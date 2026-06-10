@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5.2 Gobierno y Derechos Humanos — Sociedad Digital NS</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f1f5;--surface:#fff;--ink:#1c1c28;--ink2:#3d3d52;--muted:#7a7a8e;--border:#dedad3;
+  --purple:#4a2080;--gold:#b07820;--red:#b83232;--blue:#1f5c99;--green:#1a6640;--teal:#0e6b6b;
+  --purple-bg:#f3eefc;--gold-bg:#fdf6e8;--red-bg:#fdf0f0;--blue-bg:#eef4fb;--green-bg:#eef7f1;--teal-bg:#e8f5f5;
+  --purple-b:#c8a8e8;--gold-b:#e8c870;--red-b:#f0b8b8;--blue-b:#b8d4f0;--green-b:#a8d8b8;--teal-b:#a0d4d4;
+}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:15px;}
+
+.hdr{background:linear-gradient(135deg,#2d1060 0%,#4a2080 60%,#1f5c99 100%);color:#fff;padding:3.5rem 2rem 3rem;text-align:center;position:relative;}
+.hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold),#fff,var(--purple),var(--blue));}
+.hdr .eye{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:#c8a8f8;margin-bottom:.8rem;display:block;}
+.hdr h1{font-family:'DM Serif Display',serif;font-size:clamp(2rem,5vw,3.4rem);line-height:1.1;margin-bottom:.4rem;}
+.hdr h1 em{font-style:italic;color:#ffd770;}
+.hdr .sub{color:rgba(255,255,255,.6);font-size:.92rem;}
+
+.nav{position:sticky;top:0;z-index:200;background:var(--ink);display:flex;justify-content:center;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.08);}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:#8888a0;text-decoration:none;padding:.8rem 1rem;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;}
+.nav a:hover{color:#c8a8f8;border-bottom-color:#c8a8f8;}
+
+.wrap{max-width:920px;margin:0 auto;padding:0 1.5rem 5rem;}
+.sec{margin-top:5rem;}
+.sec-eye{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--purple);margin-bottom:.4rem;display:block;}
+.sec h2{font-family:'DM Serif Display',serif;font-size:2rem;line-height:1.2;margin-bottom:.4rem;}
+.line{width:3rem;height:3px;background:var(--purple);border-radius:2px;margin-bottom:1.5rem;}
+h3{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--purple);margin:2.5rem 0 .75rem;}
+h4{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:1.4rem 0 .5rem;}
+p{margin-bottom:.85rem;color:var(--ink2);}p:last-child{margin-bottom:0;}strong{color:var(--ink);}
+
+.tab-row{display:flex;flex-wrap:wrap;gap:0;border-bottom:2px solid var(--border);margin-bottom:1.5rem;}
+.tb{background:none;border:none;padding:.7rem 1.3rem;font-family:'DM Sans',sans-serif;font-size:.88rem;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;font-weight:500;}
+.tb:hover{color:var(--purple);}.tb.on{color:var(--purple);border-bottom-color:var(--purple);}
+.tp{display:none;}.tp.on{display:block;}
+
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem;margin:1.5rem 0;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.1rem 1.2rem;border-top:3px solid var(--purple);}
+.card .ctag{font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--purple);font-weight:700;margin-bottom:.35rem;}
+.card h4{margin-top:0;margin-bottom:.45rem;color:var(--purple);}
+.card p{font-size:.85rem;margin:0;}
+
+.tbl{width:100%;border-collapse:collapse;margin:1.2rem 0;font-size:.87rem;}
+.tbl th{background:var(--ink);color:#c8a8f8;font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;padding:.75rem 1rem;text-align:left;}
+.tbl td{padding:.85rem 1rem;border-bottom:1px solid var(--border);vertical-align:top;}
+.tbl tr:nth-child(even) td{background:#f8f5fb;}
+.tbl td:first-child{font-weight:600;color:var(--purple);white-space:nowrap;}
+
+.al{padding:1rem 1.3rem;border-radius:6px;border-left:4px solid;margin:1.5rem 0;font-size:.93rem;}
+.al-purple{background:var(--purple-bg);border-color:var(--purple);}
+.al-gold{background:var(--gold-bg);border-color:var(--gold);}
+.al-green{background:var(--green-bg);border-color:var(--green);}
+.al-blue{background:var(--blue-bg);border-color:var(--blue);}
+.al-red{background:var(--red-bg);border-color:var(--red);}
+
+.int-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:1.2rem;box-shadow:0 2px 10px rgba(0,0,0,.05);}
+.int-hdr{padding:.85rem 1.3rem;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;}
+.int-tag{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.18rem .5rem;border-radius:3px;font-weight:700;flex-shrink:0;}
+.int-title{font-size:.92rem;font-weight:600;}
+.int-body{padding:1.2rem 1.4rem;}
+.int-body p{font-size:.9rem;}
+.criteria-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.65rem;margin-top:1rem;}
+.cr-item{padding:.75rem .9rem;border-radius:6px;font-size:.83rem;border:1px solid;}
+.cr-item strong{display:block;font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem;}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.2rem 0;}
+.col-b{padding:1rem 1.1rem;border-radius:7px;border:1px solid;font-size:.87rem;}
+.col-b h4{margin-top:0;margin-bottom:.5rem;}
+.col-b ul{padding-left:1.2rem;}.col-b li{margin-bottom:.4rem;}
+.col-g{background:var(--green-bg);border-color:var(--green-b);}
+.col-g h4{color:var(--green);}
+.col-r{background:var(--red-bg);border-color:var(--red-b);}
+.col-r h4{color:var(--red);}
+.col-p{background:var(--purple-bg);border-color:var(--purple-b);}
+.col-p h4{color:var(--purple);}
+.col-o{background:var(--gold-bg);border-color:var(--gold-b);}
+.col-o h4{color:var(--gold);}
+
+.mk{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.58rem;padding:.1rem .4rem;border-radius:3px;margin:0 .1rem;vertical-align:middle;}
+.mk-p{background:var(--purple);color:#fff;}
+.mk-k{background:var(--ink);color:#ffd770;}
+.mk-e{background:var(--gold-bg);color:var(--gold);border:1px solid var(--gold-b);}
+
+/* TENSION BOX — doble columna pro/contra con header */
+.tensión{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:1.5rem 0;}
+.tensión-title{background:var(--purple);color:#fff;padding:.65rem 1.2rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;}
+.tensión-body{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.tensión-col{padding:1rem 1.2rem;font-size:.87rem;}
+.tensión-col h4{margin-top:0;margin-bottom:.5rem;font-size:.68rem;}
+.tensión-col ul{padding-left:1.2rem;}.tensión-col li{margin-bottom:.4rem;color:var(--ink2);}
+.tensión-col.left{border-right:1px solid var(--border);background:var(--green-bg);}
+.tensión-col.left h4{color:var(--green);}
+.tensión-col.right{background:var(--red-bg);}
+.tensión-col.right h4{color:var(--red);}
+
+.pq{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.1rem 1.3rem;margin-bottom:.9rem;}
+.pq .pq-label{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem;display:block;}
+.pq p{margin:0;font-size:.92rem;}
+
+.cl{list-style:none;}
+.cl li{display:flex;align-items:flex-start;gap:.6rem;padding:.5rem .6rem;font-size:.88rem;color:var(--ink2);border-bottom:1px solid var(--border);}
+.cl li:last-child{border-bottom:none;}
+.cl li::before{content:'□';font-size:1rem;color:var(--purple);flex-shrink:0;line-height:1.4;}
+
+.badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .6rem;border-radius:20px;font-weight:700;vertical-align:middle;margin-left:.4rem;}
+.b-p{background:var(--purple-bg);color:var(--purple);border:1px solid var(--purple-b);}
+.b-g{background:var(--gold-bg);color:var(--gold);border:1px solid var(--gold-b);}
+.b-b{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-b);}
+
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.85rem;margin:1.2rem 0;}
+.stat-box{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem;text-align:center;}
+.stat-num{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--purple);line-height:1;margin-bottom:.3rem;}
+.stat-label{font-size:.8rem;color:var(--muted);}
+
+footer{text-align:center;padding:2.5rem 1rem;border-top:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:5rem;}
+@media(max-width:620px){.two{grid-template-columns:1fr;}.card-grid{grid-template-columns:1fr;}.criteria-row{grid-template-columns:1fr;}.tensión-body{grid-template-columns:1fr;}.stat-grid{grid-template-columns:1fr 1fr;}.nav a{padding:.65rem .7rem;font-size:.58rem;}}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <span class="eye">Sociedad Digital · Nivel Superior · Extension NS</span>
+  <h1>5.2 <em>Gobierno y Derechos Humanos</em></h1>
+  <p class="sub">Conflicto, participación y discriminación en la era digital · Guia de estudio</p>
+</header>
+
+<nav class="nav">
+  <a href="#overview">Vision general</a>
+  <a href="#5-2a">5.2A Conflicto</a>
+  <a href="#5-2b">5.2B Participación</a>
+  <a href="#5-2c">5.2C Discriminación</a>
+  <a href="#intervenciones">Intervenciones</a>
+  <a href="#práctica">Práctica examen</a>
+  <a href="#indagación">Indagación</a>
+</nav>
+
+<div class="wrap">
+
+<!-- ── VISION GENERAL ── -->
+<section class="sec" id="overview">
+  <span class="sec-eye">Conocimiento esencial prescrito</span>
+  <h2>Gobierno y Derechos Humanos en la era digital</h2>
+  <div class="line"></div>
+  <p>El gobierno y los derechos humanos son retos significativos en la sociedad digital. La expansión de la infraestructura de comunicación digital ha resultado en un momento de profunda transformación social: los derechos humanos se estan ejerciendo <em>y</em> violando de nuevas formas en todo el mundo debido a la tecnología digital.</p>
+
+  <div class="stat-grid">
+    <div class="stat-box">
+      <div class="stat-num">43%</div>
+      <div class="stat-label">de personas con acceso a Internet globalmente</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">35%</div>
+      <div class="stat-label">en paises en desarrollo</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">11%</div>
+      <div class="stat-label">en Africa</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">82%</div>
+      <div class="stat-label">en paises desarrollados</div>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="ctag">5.2A</div>
+      <h4>Conflicto, paz y seguridad</h4>
+      <p>Guerras y conflictos civiles. Seguridad regional, nacional y global. Tecnologias de vigilancia y ciberguerra.</p>
+    </div>
+    <div class="card">
+      <div class="ctag">5.2B</div>
+      <h4>Participación y representación</h4>
+      <p>Discurso político y activismo digital. Acceso y representación en organos de gobierno e instituciones.</p>
+    </div>
+    <div class="card">
+      <div class="ctag">5.2C</div>
+      <h4>Diversidad y discriminación</h4>
+      <p>Igualdad de género, discriminación racial/étnica, capacidad e inclusión, tolerancia religiosa y cultural.</p>
+    </div>
+  </div>
+
+  <div class="al al-purple">
+    <strong>Tensión central del tema:</strong> Las mismas tecnologias digitales que empoderan a los ciudadanos para ejercer sus derechos <span class="mk mk-k">EXPRESION</span> <span class="mk mk-k">IDENTIDAD</span> también pueden ser usadas por gobiernos y corporaciones para vigilar, controlar y discriminar. <span class="mk mk-k">PODER</span> — quien controla la infraestructura digital, controla el acceso a los derechos.
+  </div>
+</section>
+
+<!-- ── 5.2A ── -->
+<section class="sec" id="5-2a">
+  <span class="sec-eye">5.2A · Área prescrita</span>
+  <h2>Conflicto, paz y seguridad</h2>
+  <div class="line"></div>
+
+  <div class="tab-row">
+    <button class="tb on" onclick="st('da',this)">Guerras y conflictos civiles</button>
+    <button class="tb" onclick="st('da2',this)">Seguridad y ciberguerra</button>
+    <button class="tb" onclick="st('da3',this)">Vigilancia y privacidad</button>
+  </div>
+
+  <div id="da" class="tp on">
+    <h3>Guerras y conflictos civiles</h3>
+    <p>Las nuevas tecnologias digitales pueden ayudar a prevenir conflictos al reducir la brecha entre la advertencia y la respuesta. Sin embargo, las mismas tecnologias que distribuyen mensajes de paz también pueden difundir mensajes de odio e información erronea.</p>
+    <div class="tensión">
+      <div class="tensión-title">Tecnología digital en conflictos: tensión central</div>
+      <div class="tensión-body">
+        <div class="tensión-col left">
+          <h4>Para la paz y prevencion</h4>
+          <ul>
+            <li>Mapeo de crisis con crowdsourcing para detectar patrones de violencia</li>
+            <li>Drones no armados (UUAV) para monitoreo en zonas de conflicto</li>
+            <li>Imagenes satelitales para verificacion de acuerdos de paz</li>
+            <li>Redes sociales para organizar activismo pacifista transnacional</li>
+            <li>Internet por satélite para conectar zonas aisladas por conflicto</li>
+          </ul>
+        </div>
+        <div class="tensión-col right">
+          <h4>Para el conflicto y la guerra</h4>
+          <ul>
+            <li>Drones armados y robots militares autónomas</li>
+            <li>Desinformacion masiva a través de redes sociales</li>
+            <li>Apagones de Internet por gobiernos para suprimir protestas</li>
+            <li>Uso de Big Data para identificar y perseguir opositores</li>
+            <li>Ciberataques a infraestructura civil (hospitales, agua, energia)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="al al-gold">
+      <strong>Conexión 3C:</strong> <span class="mk mk-k">PODER</span> — quien controla los drones y los datos de monitoreo tiene ventaja asimetrica en conflictos. <span class="mk mk-k">SISTEMAS</span> — los conflictos digitales son sistemas interconectados donde un ataque cybernetico puede tener efectos en cascada sobre infraestructura civil. <span class="mk mk-e">POLITICO / SEGURIDAD</span>
+    </div>
+  </div>
+
+  <div id="da2" class="tp">
+    <h3>Seguridad regional, nacional y global: Ciberguerra</h3>
+    <p>La ciberguerra y los ataques de ransomware representan amenazas emergentes a la seguridad nacional que los marcos legales tradicionales no contemplan completamente.</p>
+    <table class="tbl">
+      <thead><tr><th>Amenaza digital</th><th>Descripcion</th><th>Intervención</th></tr></thead>
+      <tbody>
+        <tr><td>Ransomware</td><td>Secuestro digital de sistemas críticos (hospitales, gobiernos, infraestructura). Atacantes piden rescate para restaurar acceso</td><td>Software de protección, copias de seguridad, protocolos de respuesta a incidentes</td></tr>
+        <tr><td>Ciberespionaje</td><td>Robo de datos gubernamentales, militares o corporativos por actores estatales o no estatales</td><td>Cifrado, autenticacion multifactor, regulaciones de seguridad nacional</td></tr>
+        <tr><td>Desinformacion electoral</td><td>Campanas coordinadas de bots y contenido falso para influir en elecciones</td><td>Etiquetado de contenido falso, verificacion de identidad en plataformas, regulación publicitaria digital</td></tr>
+        <tr><td>Ataques a infraestructura</td><td>Ciberataques a redes electricas, sistemas de agua y transporte</td><td>Aislamiento de sistemas críticos (air-gapping), políticas de uso ético de IA en equipos militares</td></tr>
+      </tbody>
+    </table>
+    <div class="al al-blue">
+      <strong>Dilema ético central:</strong> El uso de IA en equipos militares y policiales plantea preguntas sobre responsabilidad: si un robot o algoritmo toma una decisión letal, ¿quien responde? ¿El programador, el comandante o la maquina? <span class="mk mk-k">VALORES Y ÉTICA</span>
+    </div>
+  </div>
+
+  <div id="da3" class="tp">
+    <h3>Vigilancia, privacidad y seguridad ciudadana</h3>
+    <p>Las tecnologias de vigilancia crean una tensión permanente entre la seguridad colectiva y los derechos individuales a la privacidad.</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="ctag">Reconocimiento facial</div>
+        <h4>Gafas inteligentes policiales</h4>
+        <p>Ejemplo directo de la Prueba NS N24 (Pregunta 3): gafas que escanean rostros y buscan en base de datos policial. Genera debates sobre vigilancia masiva no consentida.</p>
+      </div>
+      <div class="card">
+        <div class="ctag">CCTV + IA</div>
+        <h4>Redes de vigilancia urbana</h4>
+        <p>Camaras con IA en ciudades que identifican comportamientos "sospechosos". China ha implementado sistemas de credito social vinculados a monitoreo de camara.</p>
+      </div>
+      <div class="card">
+        <div class="ctag">Censura digital</div>
+        <h4>Control de Internet por gobiernos</h4>
+        <p>Camboya bloqueo sitios de noticias independientes 2 dias antes de elecciones (2018). Uganda bloqueo acceso a redes sociales durante protestas. <span class="mk mk-k">PODER</span></p>
+      </div>
+      <div class="card">
+        <div class="ctag">Hacktivismo</div>
+        <h4>Resistencia digital ciudadana</h4>
+        <p>Hackear sistemas informaticos con fines sociales o políticos. Grupos como Anonymous han atacado gobiernos autoritarios y corporaciones en nombre de causas civiles.</p>
+      </div>
+    </div>
+    <div class="al al-purple">
+      <strong>Pregunta de reflexión IB:</strong> "¿Deberia permitirse a los gobiernos crear leyes y políticas en torno a las nuevas tecnologias que podrian afectar nuestros derechos humanos?" — Esta pregunta conecta 5.2A con los conceptos de <span class="mk mk-k">PODER</span> y <span class="mk mk-k">VALORES Y ÉTICA</span>.
+    </div>
+  </div>
+</section>
+
+<!-- ── 5.2B ── -->
+<section class="sec" id="5-2b">
+  <span class="sec-eye">5.2B · Área prescrita</span>
+  <h2>Participación y representación</h2>
+  <div class="line"></div>
+
+  <div class="tab-row">
+    <button class="tb on" onclick="st('db',this)">Discurso político y activismo</button>
+    <button class="tb" onclick="st('db2',this)">Representación en gobierno</button>
+    <button class="tb" onclick="st('db3',this)">Voto digital</button>
+  </div>
+
+  <div id="db" class="tp on">
+    <h3>Discurso político y activismo digital</h3>
+    <p>El activismo digital usa Internet y los medios digitales como plataformas clave para la movilizacion masiva y la acción política. Los activistas en linea distribuyen información y amplifican protestas fisicas llegando instantaneamente a audiencias globales.</p>
+    <div class="two">
+      <div class="col-b col-g">
+        <h4>Formas de activismo digital</h4>
+        <ul>
+          <li>Campanas en redes sociales (#hashtag activism)</li>
+          <li>Peticiones en linea (Change.org, Avaaz)</li>
+          <li>Crowdfunding para causas políticas</li>
+          <li>Hacktivismo: ataques digitales con fines políticos</li>
+          <li>Redes sociales de activistas (ejemplo prescrito del IB)</li>
+          <li>Periodismo ciudadano con smartphones y redes sociales</li>
+        </ul>
+      </div>
+      <div class="col-b col-r">
+        <h4>Limitaciones y riesgos</h4>
+        <ul>
+          <li>Slacktivism: participación superficial sin impacto real</li>
+          <li>Camaras de eco que polarizan en lugar de informar</li>
+          <li>Desinformacion viral que distorsiona el debate público</li>
+          <li>Gobiernos rastrean y persiguen activistas digitales</li>
+          <li>Plataformas privadas moderan o censuran discurso político</li>
+        </ul>
+      </div>
+    </div>
+    <div class="al al-gold">
+      <strong>Conexión 3C:</strong> <span class="mk mk-k">EXPRESION</span> — Internet amplifica la expresión política pero también la diluye. <span class="mk mk-k">CAMBIO</span> — el activismo digital ha impulsado cambios sociales reales (Primavera Arabe, #MeToo, BLM). <span class="mk mk-e">POLITICO / SOCIAL</span>
+    </div>
+  </div>
+
+  <div id="db2" class="tp">
+    <h3>Acceso y representación en organos de gobierno</h3>
+    <p>Los gobiernos usan tecnologias digitales para comunicarse con ciudadanos, pero la participación en decisiones públicas sigue siendo desigual. La disminucion de participación en asuntos locales es un desafio que las plataformas digitales buscan resolver.</p>
+    <table class="tbl">
+      <thead><tr><th>Intervención</th><th>Objetivo</th><th>Ejemplo real</th><th>Riesgo</th></tr></thead>
+      <tbody>
+        <tr><td>Gobierno abierto (Open Government)</td><td>Publicar datos gubernamentales accesibles a ciudadanos</td><td>data.gov (EE.UU.), datos.gob.es</td><td>Brecha digital excluye a quienes no tienen acceso o habilidades</td></tr>
+        <tr><td>Consulta pública digital</td><td>Plataformas para debate público y votacion de ideas</td><td>Decidim (Barcelona), Your Priorities (Islandia)</td><td>Grupos organizados pueden dominar la consulta</td></tr>
+        <tr><td>Campana de información civica (ejemplo IB)</td><td>Informar sobre reuniones y fechas del gobierno local</td><td>Alumno desarrolla campana en linea sobre horarios municipales</td><td>Alcance limitado si no hay difusion activa</td></tr>
+        <tr><td>Redes sociales gubernamentales</td><td>Comunicación directa entre gobierno y ciudadanos</td><td>Cuentas oficiales en Twitter/X, Facebook</td><td>Pueden usarse para propaganda o desinformacion oficial</td></tr>
+      </tbody>
+    </table>
+    <div class="al al-purple">
+      <strong>Paradoja de la representación digital:</strong> Las plataformas digitales pueden aumentar la participación formal (mas personas expresando opiniones) pero reducir la representación real si las decisiones siguen siendo tomadas sin incorporar esas voces. <span class="mk mk-k">PODER</span> <span class="mk mk-k">SISTEMAS</span>
+    </div>
+  </div>
+
+  <div id="db3" class="tp">
+    <h3>Voto digital: acceso, confianza y seguridad</h3>
+    <p>El voto por Internet aparece directamente en la Prueba NS N24 (Pregunta 5, Sección B). Es el ejemplo mas claro de la tensión entre participación digital y seguridad democratica.</p>
+    <div class="tensión">
+      <div class="tensión-title">Voto por Internet: argumentos del markscheme oficial N24</div>
+      <div class="tensión-body">
+        <div class="tensión-col left">
+          <h4>SI aumentara la participación</h4>
+          <ul>
+            <li>Elimina barreras espaciales: votar desde cualquier lugar <span class="mk mk-k">ESPACIO</span></li>
+            <li>Incluye personas con movilidad reducida o en zonas remotas <span class="mk mk-k">EQUIDAD</span></li>
+            <li>Atrae a votantes jovenes nativos digitales <span class="mk mk-e">ACEPTABILIDAD</span></li>
+            <li>Transparencia potencial si el sistema es auditable <span class="mk mk-e">ÉTICA</span></li>
+          </ul>
+        </div>
+        <div class="tensión-col right">
+          <h4>NO aumentara la participación</h4>
+          <ul>
+            <li>Brecha digital excluye poblaciones rurales y mayores <span class="mk mk-k">EQUIDAD</span></li>
+            <li>Vulnerabilidad a hacking y manipulación <span class="mk mk-e">ÉTICA</span></li>
+            <li>Falta de transparencia algoritmica genera desconfianza <span class="mk mk-e">ACEPTABILIDAD</span></li>
+            <li>Resistencia cultural al cambio tecnológico <span class="mk mk-e">ACEPTABILIDAD</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="al al-blue">
+      <strong>Referencia a situación similar para la conclusión:</strong> Estonia implemento voto en linea en 2005 y la participación electrónica ha crecido hasta el 50% de votos. Brasil introdujo urnas electrónicas en los 90s acompanadas de alfabetizacion civica. India tiene contextos muy distintos — la comparación es clave para una conclusión de 10–12 puntos.
+    </div>
+  </div>
+</section>
+
+<!-- ── 5.2C ── -->
+<section class="sec" id="5-2c">
+  <span class="sec-eye">5.2C · Área prescrita</span>
+  <h2>Diversidad y discriminación</h2>
+  <div class="line"></div>
+  <p>Las intervenciones digitales se pueden usar para reducir la discriminación por motivos de género, raza, etnia y capacidad — pero también pueden ser fuente de sesgo. La tolerancia religiosa y cultural puede potenciarse o reducirse según la intervención digital.</p>
+
+  <div class="tab-row">
+    <button class="tb on" onclick="st('dc',this)">Igualdad de género</button>
+    <button class="tb" onclick="st('dc2',this)">Discriminación racial</button>
+    <button class="tb" onclick="st('dc3',this)">Capacidad e inclusión</button>
+    <button class="tb" onclick="st('dc4',this)">Tolerancia cultural</button>
+  </div>
+
+  <div id="dc" class="tp on">
+    <h3>Igualdad de género y tecnología</h3>
+    <p>Las mujeres representan menos de un tercio de los roles relacionados con tecnología. Estan subrepresentadas en niveles de liderazgo y toma de decisiones, lo que afecta la calidad del diseno de tecnologias digitales que usan millones de personas.</p>
+    <div class="two">
+      <div class="col-b col-g">
+        <h4>Intervenciones para la equidad de género digital</h4>
+        <ul>
+          <li>Políticas de contratación proactiva de mujeres en empresas tecnológicas</li>
+          <li>Campamentos de programación, robótica y STEM para niñas</li>
+          <li>MOOCs diseñados especificamente para mujeres en tecnología</li>
+          <li>Políticas de equidad de género en admisiones universitarias de TIC</li>
+          <li>Modelos femeninos a seguir en medios digitales</li>
+          <li>Espacios digitales seguros para mujeres (apps especializadas)</li>
+        </ul>
+      </div>
+      <div class="col-b col-r">
+        <h4>Barreras persistentes</h4>
+        <ul>
+          <li>Sesgos algoritmicos en sistemas de selección que reproducen patrones históricos</li>
+          <li>Acoso digital y trolling dirigido a mujeres que participan en discurso público</li>
+          <li>Algoritmos de contratación entrenados con datos historicamente sesgados</li>
+          <li>Contenido de Internet predominantemente en idiomas y perspectivas masculinas</li>
+        </ul>
+      </div>
+    </div>
+    <div class="al al-gold">
+      <strong>Ejemplo del mundo real prescrito (IB):</strong> Universidades crean políticas de equidad de género en admisiones de ingenieria. Recomendación para acciones futuras: monitorear las tasas de admision para garantizar mejoras en la representación de las mujeres. <span class="mk mk-e">EQUIDAD</span>
+    </div>
+  </div>
+
+  <div id="dc2" class="tp">
+    <h3>Discriminación racial y étnica en sistemas digitales</h3>
+    <p>En 2020, la ONU informo que los algoritmos de Big Data estan reproduciendo sistemas discriminatorios y las tecnologias digitales emergentes agravan las desigualdades raciales y étnicas existentes.</p>
+
+    <div class="al al-red">
+      <strong>Dato clave — Reconocimiento facial (Estudio MIT):</strong> Las mujeres de piel oscura tenian tasas de inexactitud de hasta el <strong>34%</strong> — aproximadamente <strong>49 veces mas altas</strong> que las de hombres blancos. Otro estudio encontro que los africanos tenian tasas de error <strong>100 veces mayores</strong> que los europeos del este. Esto ocurre porque los algoritmos se entrenaron principalmente con rostros de hombres blancos.
+    </div>
+
+    <table class="tbl">
+      <thead><tr><th>Tecnología</th><th>Sesgo documentado</th><th>Intervención posible</th></tr></thead>
+      <tbody>
+        <tr><td>Reconocimiento facial</td><td>Amazon Rekognition identifico a Oprah Winfrey como hombre; tasas de error 100x mayores en personas africanas</td><td>Bases de datos de entrenamiento mas diversas; políticas de prohibicion en policia; auditoria independiente</td></tr>
+        <tr><td>Algoritmos de justicia (COMPAS)</td><td>Predecia reincidencia criminal con sesgos raciales comprobados en EE.UU.</td><td>Transparencia algoritmica obligatoria; revisión humana de decisiones de alto impacto</td></tr>
+        <tr><td>Algoritmos de contratación</td><td>IA entrenada en datos históricos reproduce subrepresentacion de minorias</td><td>Auditoria de sesgos antes de implementar; conjuntos de datos representativos</td></tr>
+        <tr><td>Apagones de Internet</td><td>Usados para suprimir comunidades específicas o reuniones políticas de minorias</td><td>Legislacion internacional sobre derecho de acceso a Internet como derecho humano</td></tr>
+      </tbody>
+    </table>
+    <div class="al al-purple">
+      <strong>Pregunta de práctica Sección B:</strong> "La policia y otras autoridades necesitan identificar personas con precision. Sin embargo, se ha descubierto que la tecnología de reconocimiento facial es inexacta y sesgada, especialmente para personas de color. Examine la afirmacion de que el uso del reconocimiento facial tendra un impacto negativo global." [12 pts]
+    </div>
+  </div>
+
+  <div id="dc3" class="tp">
+    <h3>Capacidad, acceso e inclusión digital</h3>
+    <p>Muchas tecnologias impulsadas por IA se desarrollaron pensando en personas con discapacidad. Sin embargo, persisten brechas significativas en accesibilidad digital.</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="ctag">Software de voz</div>
+        <h4>Control por voz y texto-a-voz</h4>
+        <p>Software que convierte habla en texto o en acciones para personas con discapacidades fisicas. Lectores de pantalla para personas con discapacidad visual. Siri, Google Assistant, JAWS.</p>
+      </div>
+      <div class="card">
+        <div class="ctag">IA visual</div>
+        <h4>Texto alternativo automático</h4>
+        <p>IA que describe imagenes para usuarios de lectores de pantalla. Etiquetado automático de imagenes mediante aprendizaje automático reconoce elementos visuales y genera descripcion en texto.</p>
+      </div>
+      <div class="card">
+        <div class="ctag">Movilidad</div>
+        <h4>Sillas de ruedas autonomas</h4>
+        <p>Con IA para navegacion independiente en entornos complejos. Reduce dependencia de cuidadores y aumenta autonomia de personas con discapacidad motora severa.</p>
+      </div>
+      <div class="card">
+        <div class="ctag">Subtitulos</div>
+        <h4>Traduccion y subtitulado automático</h4>
+        <p>Contenido con subtitulos automáticos generados por IA para personas con perdida auditiva. Google, YouTube y plataformas de streaming han implementado subtitulos en tiempo real.</p>
+      </div>
+    </div>
+    <div class="al al-green">
+      <strong>Tensión equidad/inclusión:</strong> Las tecnologias asistivas mas avanzadas (exoesqueletos, dispositivos de comunicación aumentativa) son costosas y solo accesibles para personas en paises ricos, creando una nueva forma de inequidad dentro de la población con discapacidad. <span class="mk mk-e">EQUIDAD</span> <span class="mk mk-e">COSTO</span>
+    </div>
+  </div>
+
+  <div id="dc4" class="tp">
+    <h3>Tolerancia religiosa y diferencias culturales</h3>
+    <p>La tolerancia hacia las diferencias culturales y religiosas se puede potenciar o reducir con las intervenciones digitales. El mismo ecosistema tecnológico que permite la conexión intercultural facilita también la amplificación del discurso de odio.</p>
+    <div class="tensión">
+      <div class="tensión-title">Tecnología digital y tolerancia cultural: doble efecto</div>
+      <div class="tensión-body">
+        <div class="tensión-col left">
+          <h4>Potencia la tolerancia</h4>
+          <ul>
+            <li>Plataformas de traduccion automática que derumban barreras de idioma</li>
+            <li>Redes sociales que conectan personas de culturas distintas</li>
+            <li>Contenido educativo intercultural accesible globalmente (MOOCs)</li>
+            <li>Acción política en redes para visibilizar discriminación cultural/religiosa</li>
+          </ul>
+        </div>
+        <div class="tensión-col right">
+          <h4>Reduce la tolerancia</h4>
+          <ul>
+            <li>Algoritmos de recomendación que refuerzan camaras de eco ideologicas</li>
+            <li>Videojuegos con sesgos culturales y raciales incorporados</li>
+            <li>Plataformas de discurso de odio que amplifican intolerancia</li>
+            <li>Software de reconocimiento facial usado para monitorear grupos religiosos</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="al al-gold">
+      <strong>Ejemplo prescrito del IB:</strong> Una plataforma de microblogs anuncia un sistema de clasificación automática para etiquetar o bloquear el discurso de odio de sus usuarios. Evalúa esta intervención usando los 6 criterios: ¿quien define el odio? ¿Hay sesgo cultural en los algoritmos de moderación? <span class="mk mk-k">PODER</span> <span class="mk mk-k">VALORES Y ÉTICA</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── INTERVENCIÓNES ── -->
+<section class="sec" id="intervenciones">
+  <span class="sec-eye">Ejemplos prescritos del IB + evaluación con 6 criterios</span>
+  <h2>Intervenciones para indagación prolongada</h2>
+  <div class="line"></div>
+
+  <!-- Intervención 1 -->
+  <div class="int-card">
+    <div class="int-hdr" style="background:var(--purple-bg);">
+      <span class="int-tag" style="background:var(--purple);color:#fff;">5.2A · Paz</span>
+      <span class="int-title">Red social de activistas por la paz (activista independiente)</span>
+      <span class="badge b-p">Ejemplo IB prescrito</span>
+    </div>
+    <div class="int-body">
+      <p>Un activista por la paz crea una red social en linea para interactuar con destacados activistas de todo el mundo, compartir estrategias de resistencia no violenta, coordinar acciones y documentar abusos de derechos humanos en zonas de conflicto.</p>
+      <div class="criteria-row">
+        <div class="cr-item" style="background:var(--green-bg);border-color:var(--green-b);">
+          <strong>Equidad</strong>Depende de conectividad. Excluye activistas en zonas con Internet restringido o cortado.
+        </div>
+        <div class="cr-item" style="background:var(--red-bg);border-color:var(--red-b);">
+          <strong>Aceptabilidad</strong>Gobiernos pueden bloquear o criminalizar la plataforma. Activistas en riesgo de ser identificados.
+        </div>
+        <div class="cr-item" style="background:var(--teal-bg);border-color:var(--teal-b);">
+          <strong>Costo</strong>Bajo costo financiero de entrada. Alto costo personal para activistas en entornos autoritarios.
+        </div>
+        <div class="cr-item" style="background:var(--blue-bg);border-color:var(--blue-b);">
+          <strong>Viabilidad</strong>Técnicamente simple. Barrera: moderación de contenido en multiples idiomas y contextos culturales.
+        </div>
+        <div class="cr-item" style="background:var(--purple-bg);border-color:var(--purple-b);">
+          <strong>Innovación</strong>Adaptacion de redes sociales existentes al activismo transnacional estructurado y coordinado.
+        </div>
+        <div class="cr-item" style="background:var(--gold-bg);border-color:var(--gold-b);">
+          <strong>Ética</strong>¿Como proteger la identidad de activistas en riesgo? Anonimato vs. autenticidad de fuentes.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Intervención 2 -->
+  <div class="int-card">
+    <div class="int-hdr" style="background:var(--blue-bg);">
+      <span class="int-tag" style="background:var(--blue);color:#fff;">5.2B · Participación</span>
+      <span class="int-title">Campana de información civica digital (alumno o ciudadano)</span>
+      <span class="badge b-b">Ejemplo IB prescrito</span>
+    </div>
+    <div class="int-body">
+      <p>Un alumno o ciudadano desarrolla una campana de información en linea para destacar las fechas y horarios de las reuniones del gobierno local — usando redes sociales, newsletters digitales y notificaciones push para aumentar la participación ciudadana en asuntos municipales.</p>
+      <div class="criteria-row">
+        <div class="cr-item" style="background:var(--green-bg);border-color:var(--green-b);">
+          <strong>Equidad</strong>Alcanza a usuarios digitales. Excluye adultos mayores o comunidades sin acceso a Internet.
+        </div>
+        <div class="cr-item" style="background:var(--red-bg);border-color:var(--red-b);">
+          <strong>Aceptabilidad</strong>Alta aceptabilidad: información pública y neutral. Riesgo de percibirse como spam.
+        </div>
+        <div class="cr-item" style="background:var(--teal-bg);border-color:var(--teal-b);">
+          <strong>Costo</strong>Muy bajo (redes sociales gratuitas). Costo de tiempo del creador. Sin financiamiento institucional.
+        </div>
+        <div class="cr-item" style="background:var(--blue-bg);border-color:var(--blue-b);">
+          <strong>Viabilidad</strong>Alta. No requiere permiso gubernamental para información pública. Barrera: alcance limitado sin difusion masiva.
+        </div>
+        <div class="cr-item" style="background:var(--purple-bg);border-color:var(--purple-b);">
+          <strong>Innovación</strong>Adaptacion de herramientas digitales cotidianas a la participación civica. Potencial de escalabilidad.
+        </div>
+        <div class="cr-item" style="background:var(--gold-bg);border-color:var(--gold-b);">
+          <strong>Ética</strong>¿Quien verifica la información? El riesgo de difundir fechas incorrectas puede desincentivar participación.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Intervención 3 -->
+  <div class="int-card">
+    <div class="int-hdr" style="background:var(--gold-bg);">
+      <span class="int-tag" style="background:var(--gold);color:#fff;">5.2C · Discriminación</span>
+      <span class="int-title">Sistema automático de clasificación de discurso de odio (plataforma de microblogs)</span>
+      <span class="badge b-g">Ejemplo IB prescrito</span>
+    </div>
+    <div class="int-body">
+      <p>Una plataforma de microblogs (tipo Twitter/X) anuncia un sistema de IA para etiquetar o bloquear automáticamente el discurso de odio de sus usuarios. El sistema analiza contenido textual e identifica patrones asociados con lenguaje discriminatorio, amenazas o desinformacion.</p>
+      <div class="criteria-row">
+        <div class="cr-item" style="background:var(--green-bg);border-color:var(--green-b);">
+          <strong>Equidad</strong>Protege a grupos marginados del acoso. Riesgo: sesgos en el algoritmo pueden silenciar las propias voces que busca proteger.
+        </div>
+        <div class="cr-item" style="background:var(--red-bg);border-color:var(--red-b);">
+          <strong>Aceptabilidad</strong>Debatida: usuarios conservadores lo ven como censura; grupos vulnerables lo ven como protección insuficiente.
+        </div>
+        <div class="cr-item" style="background:var(--teal-bg);border-color:var(--teal-b);">
+          <strong>Costo</strong>Alto costo de desarrollo y mantenimiento. Riesgo de errores con costo reputacional para la plataforma.
+        </div>
+        <div class="cr-item" style="background:var(--blue-bg);border-color:var(--blue-b);">
+          <strong>Viabilidad</strong>Técnicamente posible pero imperfecta. El lenguaje odioso evoluciona mas rápido que los modelos de entrenamiento.
+        </div>
+        <div class="cr-item" style="background:var(--purple-bg);border-color:var(--purple-b);">
+          <strong>Innovación</strong>Aplicación de PLN (procesamiento de lenguaje natural) a moderación de contenido a escala masiva.
+        </div>
+        <div class="cr-item" style="background:var(--gold-bg);border-color:var(--gold-b);">
+          <strong>Ética</strong>¿Quien define el "odio"? El algoritmo refleja la perspectiva cultural de sus creadores. Riesgo de censura de discurso político legitimo.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRACTICA ── -->
+<section class="sec" id="práctica">
+  <span class="sec-eye">Evaluación externa</span>
+  <h2>Preguntas de práctica — Sección B</h2>
+  <div class="line"></div>
+
+  <div class="pq">
+    <span class="pq-label">5.2A · Vigilancia · Prueba 1 NS N24 Pregunta 3 · [8 pts — Parte c]</span>
+    <p>Discuta las ventajas y desventajas del uso de gafas inteligentes capaces de reconocer rostros para la labor policial.</p>
+  </div>
+  <div class="pq">
+    <span class="pq-label">5.2B · Voto digital · Prueba 1 NS N24 Pregunta 5 · [12 pts]</span>
+    <p>La India esta considerando permitir el voto por Internet. Se afirma que esta intervención aumentara la participación electoral. ¿En que medida esta de acuerdo con esta afirmacion?</p>
+  </div>
+  <div class="pq">
+    <span class="pq-label">5.2C · Reconocimiento facial · [12 pts]</span>
+    <p>La policia y otras autoridades necesitan identificar personas con precision. Sin embargo, se ha descubierto que la tecnología de reconocimiento facial es inexacta y sesgada, especialmente para personas de color. Examine la afirmacion de que el uso de la tecnología de reconocimiento facial tendra un impacto negativo global. Discuta un ejemplo del mundo real.</p>
+  </div>
+  <div class="pq">
+    <span class="pq-label">5.2C · Discurso de odio · [12 pts]</span>
+    <p>Una plataforma de microblogs anuncia un sistema de clasificación automática para etiquetar o bloquear el discurso de odio de sus usuarios. Se afirma que esta intervención reducira el discurso de odio en la plataforma. ¿En que medida esta de acuerdo con esta afirmacion?</p>
+  </div>
+  <div class="pq">
+    <span class="pq-label">5.2C · Identidad digital · [12 pts]</span>
+    <p>Una intervención propuesta es obligar a las empresas de redes sociales a verificar la identidad autentica de cada usuario para poder perseguir legalmente a quienes publiquen material ofensivo. Evalúe esta intervención.</p>
+  </div>
+
+  <div class="al al-green">
+    <strong>Consejo para respuestas de 10–12 puntos en este tema:</strong> Las preguntas de 5.2 casi siempre involucran la tensión <em>seguridad colectiva vs. derechos individuales</em>. Tu conclusión evaluativa debe posicionarte sobre quien debe tener el control de la tecnología y con que salvaguardas, respaldado por un ejemplo real de otro pais o contexto.
+  </div>
+</section>
+
+<!-- ── INDAGACIÓN ── -->
+<section class="sec" id="indagación">
+  <span class="sec-eye">Indagación ampliada NS</span>
+  <h2>Guia para la indagación prolongada</h2>
+  <div class="line"></div>
+
+  <h3>Tabla de desafíos e intervenciones por área (Capítulo 6 IB)</h3>
+  <table class="tbl">
+    <thead><tr><th>Área</th><th>Desafio ejemplo</th><th>Intervención ejemplo</th></tr></thead>
+    <tbody>
+      <tr><td>5.2A — Conflicto</td><td>Guerras y conflictos civiles: eliminar la brecha digital para prevenir conflictos</td><td>Internet por satélite; drones de monitoreo (UAV); imagenes satelitales</td></tr>
+      <tr><td>5.2A — Seguridad</td><td>Ataques de ransomware y ciberguerra; control y uso de IA en equipos militares</td><td>Software de protección; políticas de uso ético; IA programada con restricciones</td></tr>
+      <tr><td>5.2B — Discurso</td><td>Desinformacion y manipulación del discurso político en redes sociales</td><td>Sistemas de etiquetado de contenido falso; verificacion de identidad</td></tr>
+      <tr><td>5.2B — Representación</td><td>Disminucion de participación en asuntos locales y votaciones</td><td>Sitios web de debate público; voto en linea; campanas de información civica</td></tr>
+      <tr><td>5.2C — Género</td><td>Menos mujeres tomando carreras de TIC</td><td>Políticas de contratación proactiva; programas STEM para niñas; MOOCs</td></tr>
+      <tr><td>5.2C — Raza</td><td>Trolling racial; reconocimiento facial sesgado para controlar grupos</td><td>Apps seguras; políticas de prohibicion; software de reconocimiento mejorado</td></tr>
+      <tr><td>5.2C — Capacidad</td><td>Personas con discapacidad sin acceso a tecnología o empleo</td><td>Tecnologias asistivas de IA; teletrabajo; accesibilidad web</td></tr>
+      <tr><td>5.2C — Cultura</td><td>Juegos con sesgos culturales; monitoreo de grupos religiosos</td><td>Diseño inclusivo de juegos; acción política en redes sociales</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Checklist de indagación — Gobierno y Derechos Humanos</h3>
+  <ul class="cl">
+    <li>Identifica el desafío específico dentro de 5.2A, 5.2B o 5.2C con personas y comunidades reales afectadas (nivel local, regional o global)</li>
+    <li>Selecciona una intervención digital concreta que involucre tecnología (no solo política)</li>
+    <li>Conecta con las 3C: ¿que Concepto (Poder, Identidad, Expresión)? ¿que Contenido (IA, redes, datos)? ¿en que Contexto (político, social)?</li>
+    <li>Analiza la tensión central del tema: seguridad vs. derechos individuales, o protección vs. censura</li>
+    <li>Evalúa usando los 6 criterios, prestando especial atención a Ética y Aceptabilidad en este tema</li>
+    <li>Incluye un ejemplo del mundo real documentado (ONU, estudios MIT, casos nacionales)</li>
+    <li>Concluye con recomendaciones que incluyan tanto soluciones técnicas como políticas/legislativas</li>
+    <li>Compara con situaciones similares en otros paises o contextos tecnológicos</li>
+  </ul>
+
+  <div class="al al-purple">
+    <strong>Nota del IB (Capítulo 5):</strong> Para 5.2, las intervenciones no son solo tecnológicas — un cambio en la política, práctica o ley también puede considerarse una intervención que involucra sistemas digitales. Las recomendaciones de política pública son especialmente relevantes en este tema.
+  </div>
+</section>
+
+</div>
+<footer>Sociedad Digital · Nivel Superior · 5.2 Gobierno y Derechos Humanos &nbsp;|&nbsp; Basado en Capítulos 5 y 6 del libro de texto IB y guia del programa</footer>
+
+<script>
+function st(id,btn){
+  const parent=btn.closest('.sec');
+  parent.querySelectorAll('.tp').forEach(p=>p.classList.remove('on'));
+  parent.querySelectorAll('.tb').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

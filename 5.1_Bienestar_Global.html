@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5.1 Bienestar Global — Sociedad Digital NS</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f1ec;--surface:#fff;--ink:#1c1c28;--ink2:#3d3d52;--muted:#7a7a8e;--border:#dedad3;
+  --teal:#0e6b6b;--gold:#b07820;--red:#b83232;--blue:#1f5c99;--green:#1a6640;--purple:#5e3a8a;
+  --teal-bg:#e8f5f5;--gold-bg:#fdf6e8;--red-bg:#fdf0f0;--blue-bg:#eef4fb;--green-bg:#eef7f1;--purple-bg:#f5f0fa;
+  --teal-b:#a0d4d4;--gold-b:#e8c870;--red-b:#f0b8b8;--blue-b:#b8d4f0;--green-b:#a8d8b8;--purple-b:#cdb8e8;
+}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:15px;}
+
+/* HEADER */
+.hdr{background:var(--teal);color:#fff;padding:3.5rem 2rem 3rem;text-align:center;position:relative;}
+.hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold),#fff,var(--teal),var(--gold));}
+.hdr .eye{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:#a8e6e6;margin-bottom:.8rem;display:block;}
+.hdr h1{font-family:'DM Serif Display',serif;font-size:clamp(2rem,5vw,3.4rem);line-height:1.1;margin-bottom:.4rem;}
+.hdr h1 em{font-style:italic;color:#ffd770;}
+.hdr .sub{color:rgba(255,255,255,.65);font-size:.92rem;}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:200;background:var(--ink);display:flex;justify-content:center;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.08);}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:#8888a0;text-decoration:none;padding:.8rem 1rem;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;}
+.nav a:hover{color:#ffd770;border-bottom-color:#ffd770;}
+
+/* LAYOUT */
+.wrap{max-width:920px;margin:0 auto;padding:0 1.5rem 5rem;}
+.sec{margin-top:5rem;}
+.sec-eye{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:.4rem;display:block;}
+.sec h2{font-family:'DM Serif Display',serif;font-size:2rem;line-height:1.2;margin-bottom:.4rem;}
+.line{width:3rem;height:3px;background:var(--teal);border-radius:2px;margin-bottom:1.5rem;}
+h3{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--teal);margin:2.5rem 0 .75rem;}
+h4{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:1.4rem 0 .5rem;}
+p{margin-bottom:.85rem;color:var(--ink2);}p:last-child{margin-bottom:0;}
+strong{color:var(--ink);}
+
+/* TABS */
+.tab-row{display:flex;flex-wrap:wrap;gap:0;border-bottom:2px solid var(--border);margin-bottom:1.5rem;}
+.tb{background:none;border:none;padding:.7rem 1.3rem;font-family:'DM Sans',sans-serif;font-size:.88rem;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;font-weight:500;}
+.tb:hover{color:var(--teal);}.tb.on{color:var(--teal);border-bottom-color:var(--teal);}
+.tp{display:none;}.tp.on{display:block;}
+
+/* CARDS */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin:1.5rem 0;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.1rem 1.2rem;border-top:3px solid var(--teal);}
+.card .ctag{font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);font-weight:700;margin-bottom:.35rem;}
+.card h4{margin-top:0;margin-bottom:.45rem;}
+.card p{font-size:.85rem;margin:0;}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;margin:1.2rem 0;font-size:.87rem;}
+.tbl th{background:var(--ink);color:#ffd770;font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;padding:.75rem 1rem;text-align:left;}
+.tbl td{padding:.85rem 1rem;border-bottom:1px solid var(--border);vertical-align:top;}
+.tbl tr:nth-child(even) td{background:#f8f5f0;}
+.tbl td:first-child{font-weight:600;color:var(--teal);white-space:nowrap;}
+
+/* ALERT */
+.al{padding:1rem 1.3rem;border-radius:6px;border-left:4px solid;margin:1.5rem 0;font-size:.93rem;}
+.al-teal{background:var(--teal-bg);border-color:var(--teal);}
+.al-gold{background:var(--gold-bg);border-color:var(--gold);}
+.al-green{background:var(--green-bg);border-color:var(--green);}
+.al-blue{background:var(--blue-bg);border-color:var(--blue);}
+
+/* INTERVENCIÓN CARD */
+.int-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:1.2rem;box-shadow:0 2px 10px rgba(0,0,0,.05);}
+.int-hdr{padding:.85rem 1.3rem;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;}
+.int-tag{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.18rem .5rem;border-radius:3px;font-weight:700;flex-shrink:0;}
+.int-title{font-size:.92rem;font-weight:600;}
+.int-body{padding:1.2rem 1.4rem;}
+.int-body p{font-size:.9rem;}
+.criteria-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.65rem;margin-top:1rem;}
+.cr-item{padding:.75rem .9rem;border-radius:6px;font-size:.83rem;border:1px solid;}
+.cr-item strong{display:block;font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem;}
+
+/* TWO COL */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.2rem 0;}
+.col-b{padding:1rem 1.1rem;border-radius:7px;border:1px solid;font-size:.87rem;}
+.col-b h4{margin-top:0;margin-bottom:.5rem;}
+.col-b ul{padding-left:1.2rem;}.col-b li{margin-bottom:.4rem;}
+.col-g{background:var(--green-bg);border-color:var(--green-b);}
+.col-g h4{color:var(--green);}
+.col-r{background:var(--red-bg);border-color:var(--red-b);}
+.col-r h4{color:var(--red);}
+.col-t{background:var(--teal-bg);border-color:var(--teal-b);}
+.col-t h4{color:var(--teal);}
+.col-o{background:var(--gold-bg);border-color:var(--gold-b);}
+.col-o h4{color:var(--gold);}
+
+/* CONCEPTO TAG */
+.mk{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.58rem;padding:.1rem .4rem;border-radius:3px;margin:0 .1rem;vertical-align:middle;}
+.mk-c{background:var(--teal);color:#fff;}
+.mk-k{background:var(--ink);color:#ffd770;}
+.mk-e{background:var(--gold-bg);color:var(--gold);border:1px solid var(--gold-b);}
+
+/* PREGUNTAS DE PRACTICA */
+.pq{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.1rem 1.3rem;margin-bottom:.9rem;}
+.pq .pq-label{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem;display:block;}
+.pq p{margin:0;font-size:.92rem;}
+
+/* CHECKLIST */
+.cl li{display:flex;align-items:flex-start;gap:.6rem;padding:.5rem .6rem;border-radius:4px;font-size:.88rem;color:var(--ink2);border-bottom:1px solid var(--border);}
+.cl li:last-child{border-bottom:none;}
+.cl li::before{content:'□';font-size:1rem;color:var(--teal);flex-shrink:0;line-height:1.4;}
+.cl{list-style:none;}
+
+/* BADGE */
+.badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .6rem;border-radius:20px;font-weight:700;vertical-align:middle;margin-left:.4rem;}
+.b-teal{background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal-b);}
+.b-gold{background:var(--gold-bg);color:var(--gold);border:1px solid var(--gold-b);}
+.b-red{background:var(--red-bg);color:var(--red);border:1px solid var(--red-b);}
+.b-blue{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-b);}
+
+footer{text-align:center;padding:2.5rem 1rem;border-top:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:5rem;}
+@media(max-width:620px){.two{grid-template-columns:1fr;}.card-grid{grid-template-columns:1fr;}.criteria-row{grid-template-columns:1fr;}.nav a{padding:.65rem .7rem;font-size:.58rem;}}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <span class="eye">Sociedad Digital · Nivel Superior · Extension NS</span>
+  <h1>5.1 <em>Bienestar Global</em></h1>
+  <p class="sub">Desafios, intervenciones y conexiones con las 3C · Guia de estudio</p>
+</header>
+
+<nav class="nav">
+  <a href="#overview">Vision general</a>
+  <a href="#5-1a">5.1A Desigualdad</a>
+  <a href="#5-1b">5.1B Poblaciones</a>
+  <a href="#5-1c">5.1C Trabajo</a>
+  <a href="#intervenciones">Intervenciones</a>
+  <a href="#práctica">Práctica examen</a>
+  <a href="#indagación">Indagación</a>
+</nav>
+
+<div class="wrap">
+
+<!-- ── VISION GENERAL ── -->
+<section class="sec" id="overview">
+  <span class="sec-eye">Conocimiento esencial prescrito</span>
+  <h2>¿Que es el Bienestar Global?</h2>
+  <div class="line"></div>
+  <p>El bienestar global es un desafio importante que involucra diversos problemas y preocupaciones. Se cruza de manera importante con muchos sistemas digitales, ya que las tecnologias digitales amplian los limites de la información disponible para las personas y mejoran la productividad humana — pero también conllevan riesgos que van desde la perdida de empleos hasta violaciones de privacidad en linea.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="ctag">5.1A</div>
+      <h4>Desigualdad local y global</h4>
+      <p>Desigualdad económica, inseguridad alimentaria y acceso desigual a la atención médica.</p>
+    </div>
+    <div class="card">
+      <div class="ctag">5.1B</div>
+      <h4>Evolucion de las poblaciones</h4>
+      <p>Crecimiento demográfico, envejecimiento de la población y migracion y desplazamiento de personas.</p>
+    </div>
+    <div class="card">
+      <div class="ctag">5.1C</div>
+      <h4>El futuro del trabajo</h4>
+      <p>Automatización y empleo, empleo significativo y seguro, y necesidades colectivas de los trabajadores.</p>
+    </div>
+  </div>
+
+  <div class="al al-teal">
+    <strong>Conexión con las 3C:</strong> Cada área de investigación conecta con los tres componentes del diagrama de Sociedad Digital — <strong>Conceptos</strong> (poder, equidad, sistemas, valores), <strong>Contenido</strong> (IA, datos, redes, robótica) y <strong>Contextos</strong> (económico, social, salud, político).
+  </div>
+</section>
+
+<!-- ── 5.1A ── -->
+<section class="sec" id="5-1a">
+  <span class="sec-eye">5.1A · Área prescrita</span>
+  <h2>Desigualdad local y global</h2>
+  <div class="line"></div>
+
+  <div class="tab-row">
+    <button class="tb on" onclick="st('da',this)">Desigualdad económica</button>
+    <button class="tb" onclick="st('da2',this)">Seguridad alimentaria</button>
+    <button class="tb" onclick="st('da3',this)">Acceso a la salud</button>
+  </div>
+
+  <div id="da" class="tp on">
+    <h3>Desigualdad económica y estratificación</h3>
+    <p>La estratificación global se refiere a la distribución desigual de recursos entre naciones y dentro de ellas. Los avances en tecnología digital son una de las principales causas del aumento de la desigualdad económica: las ganancias económicas de las tecnologias digitales son enormes pero no se distribuyen equitativamente.</p>
+    <div class="two">
+      <div class="col-b col-g">
+        <h4>Tecnologias digitales que reducen desigualdad</h4>
+        <ul>
+          <li>Acceso de banda ancha asequible como derecho</li>
+          <li>Servicio de tarifa cero para personas sin ingresos</li>
+          <li>Diversificacion de contenido en idiomas nativos</li>
+          <li>Plataformas de microtrabajo (Upwork, Fiverr)</li>
+          <li>Big Data para políticas de desarrollo sostenible</li>
+        </ul>
+      </div>
+      <div class="col-b col-r">
+        <h4>Factores que profundizan la brecha digital</h4>
+        <ul>
+          <li>Falta de infraestructura en paises en desarrollo</li>
+          <li>Concentración de ganancias en pocas corporaciones</li>
+          <li>Idioma predominante en Internet (ingles)</li>
+          <li>Costos de dispositivos y conectividad</li>
+          <li>Discriminación racial/étnica en sistemas digitales</li>
+        </ul>
+      </div>
+    </div>
+    <div class="al al-gold">
+      <strong>Conexión 3C:</strong> <span class="mk mk-k">PODER</span> — las corporaciones tecnológicas concentran la riqueza digital. <span class="mk mk-k">SISTEMAS</span> — la brecha digital es un sistema interconectado de causas económicas, geográficas y culturales. <span class="mk mk-e">ECONOMICO</span> — contexto central de este desafio.
+    </div>
+  </div>
+
+  <div id="da2" class="tp">
+    <h3>Inseguridad alimentaria y acceso a alimentos</h3>
+    <p>La seguridad alimentaria implica que todos tengan acceso a cantidades suficientes de alimentos seguros y nutritivos en todo momento. No siempre es posible debido a falta de educación, inestabilidad política, factores económicos, desarrollo tecnológico y factores climaticos.</p>
+    <table class="tbl">
+      <thead><tr><th>Tecnología digital</th><th>Aplicación en seguridad alimentaria</th></tr></thead>
+      <tbody>
+        <tr><td>Sensores IoT</td><td>Monitoreo de condiciones de cultivo, suelo, agua y temperatura en tiempo real</td></tr>
+        <tr><td>Blockchain</td><td>Trazabilidad de cadena de suministro — desde campo hasta consumidor</td></tr>
+        <tr><td>SaaS (Software como servicio)</td><td>Acceso a plataformas de gestión agricola sin infraestructura propia</td></tr>
+        <tr><td>Big Data / IA</td><td>Predicción de cosechas, deteccion de plagas, optimización de precios</td></tr>
+        <tr><td>Empaques inteligentes</td><td>Reducción de desperdicio mediante monitoreo de calidad post-cosecha</td></tr>
+        <tr><td>Agricultura de precision</td><td>Reducción del uso de agua y pesticidas con drones y sensores</td></tr>
+      </tbody>
+    </table>
+    <div class="al al-teal">
+      <strong>Pregunta de examen relacionada (Sección B):</strong> "Las innovaciones digitales estan brindando acceso a alimentos saludables y nutritivos. Discuta esta afirmacion refiriendose a un ejemplo del mundo real." [12 pts]
+    </div>
+  </div>
+
+  <div id="da3" class="tp">
+    <h3>Acceso a la atención médica y la medicina</h3>
+    <p>Las desigualdades en salud implican diferencias en acceso a atención, disponibilidad de tratamientos, calidad de atención y acceso a vivienda. Estan determinadas por factores socioeconomicos, geográficos y de grupo social.</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="ctag">e-Salud</div>
+        <h4>Telesalud y telemedicina</h4>
+        <p>Consultas médicas remotas via videoconferencia. Aumento del 90% durante COVID-19 en EE.UU. Sin embargo, excluye a pacientes mayores, no hablantes de ingles y sin conectividad.</p>
+      </div>
+      <div class="card">
+        <div class="ctag">Dispositivos</div>
+        <h4>Tecnología ponible (wearables)</h4>
+        <p>Relojes inteligentes que monitorean frecuencia cardiaca, deteccion de caidas y niveles de glucosa. El Apple Watch Series 4 incluye ECG y deteccion de fibrilacion auricular.</p>
+      </div>
+      <div class="card">
+        <div class="ctag">IA</div>
+        <h4>Diagnóstico asistido por IA</h4>
+        <p>Algoritmos que analizan imagenes médicas para detectar cancer, enfermedades oculares y otras condiciones. Reduce tiempos de diagnóstico en zonas sin especialistas.</p>
+      </div>
+      <div class="card">
+        <div class="ctag">Datos</div>
+        <h4>Historia clinica electrónica</h4>
+        <p>Registros digitales de pacientes accesibles en cualquier punto de atención. Mejora coordinacion pero plantea riesgos de privacidad y ciberseguridad.</p>
+      </div>
+    </div>
+    <div class="al al-gold">
+      <strong>Conexión 3C:</strong> <span class="mk mk-k">EQUIDAD</span> — la telesalud puede ampliar o reducir brechas según quien tenga acceso. <span class="mk mk-k">SISTEMAS</span> — los sistemas de salud digital son tan efectivos como la infraestructura de conectividad que los sostiene. <span class="mk mk-e">SALUD</span> — contexto central.
+    </div>
+  </div>
+</section>
+
+<!-- ── 5.1B ── -->
+<section class="sec" id="5-1b">
+  <span class="sec-eye">5.1B · Área prescrita</span>
+  <h2>Evolucion de las poblaciones</h2>
+  <div class="line"></div>
+
+  <div class="tab-row">
+    <button class="tb on" onclick="st('db',this)">Crecimiento poblacional</button>
+    <button class="tb" onclick="st('db2',this)">Cambios demográficos</button>
+    <button class="tb" onclick="st('db3',this)">Migracion</button>
+  </div>
+
+  <div id="db" class="tp on">
+    <h3>Crecimiento de la población</h3>
+    <p>El crecimiento de la población mundial ejerce presion sobre recursos, servicios de salud, alimentos y empleo. Las tecnologias digitales se usan tanto para gestionar este crecimiento como para crear nuevos desafios de sostenibilidad.</p>
+    <div class="two">
+      <div class="col-b col-t">
+        <h4>Oportunidades digitales</h4>
+        <ul>
+          <li>Big Data para planificación urbana y servicios públicos</li>
+          <li>Ciudades inteligentes que gestionan densidad poblacional</li>
+          <li>Sensores conectados para distribución de agua y energia</li>
+          <li>Plataformas de teletrabajo que reducen presion urbana</li>
+        </ul>
+      </div>
+      <div class="col-b col-r">
+        <h4>Desafios digitales</h4>
+        <ul>
+          <li>Mayor consumo de recursos electrónicos (e-waste)</li>
+          <li>Infraestructura digital insuficiente en zonas de rápido crecimiento</li>
+          <li>Exclusión de poblaciones rurales de servicios digitales</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="db2" class="tp">
+    <h3>Cambios demográficos: envejecimiento y poblaciones jovenes</h3>
+    <p>La esperanza de vida aumento de 66,8 a 73,4 años entre 2000 y 2019 a nivel mundial. Muchos paises enfrentan el desafio del envejecimiento de la población, mientras otros tienen grandes proporciones de jovenes — cada caso requiere intervenciones digitales diferentes.</p>
+    <table class="tbl">
+      <thead><tr><th>Grupo demográfico</th><th>Desafio</th><th>Intervención digital</th></tr></thead>
+      <tbody>
+        <tr><td>Adultos mayores</td><td>Movilidad reducida, aislamiento, condiciones cronicas</td><td>Exoesqueletos, robots de compania (ElliQ), relojes inteligentes, telesalud</td></tr>
+        <tr><td>Adultos mayores</td><td>Cuidado en el hogar sin cuidadores presenciales</td><td>Sensores IoT en el hogar, camaras de monitoreo, alertas automáticas</td></tr>
+        <tr><td>Poblaciones jovenes</td><td>Acceso a educación y empleo de calidad</td><td>MOOCs, plataformas de habilidades digitales, economía gig</td></tr>
+        <tr><td>Todas las edades</td><td>Ciudades con alta densidad y presion sobre servicios</td><td>Ciudades inteligentes, sensores de gestión urbana, Big Data municipal</td></tr>
+      </tbody>
+    </table>
+    <div class="al al-blue">
+      <strong>Ejemplo del mundo real — Exoesqueleto:</strong> Esta intervención aparece directamente en la Prueba 1 NS, Noviembre 2024 (Pregunta 4, Sección B). Conecta con 5.1B (envejecimiento de la población) y con los criterios de <em>equidad</em>, <em>costo</em> y <em>ética</em>.
+    </div>
+  </div>
+
+  <div id="db3" class="tp">
+    <h3>Migracion y desplazamiento de personas</h3>
+    <p>Cuando hay una crisis por conflicto o desastre natural, muchas personas deben abandonar sus hogares frecuentemente sin documentos de identidad. Las organizaciones que trabajan con refugiados usan tecnología digital para enfrentar este desafio.</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="ctag">Bases de datos</div>
+        <h4>Registro de identidad digital</h4>
+        <p>Registro de datos de refugiados para probar identidad, acceder a ayuda de emergencia y permitir el trabajo en paises de acogida.</p>
+      </div>
+      <div class="card">
+        <div class="ctag">Blockchain</div>
+        <h4>Identidad descentralizada</h4>
+        <p>Blockchain permite almacenar identidades de refugiados de forma segura e inalterable, accesible sin depender de un gobierno específico.</p>
+      </div>
+      <div class="card">
+        <div class="ctag">Big Data</div>
+        <h4>Mapeo de crisis</h4>
+        <p>Una ONG propone usar macrodatos para comprender y representar mejor la crisis de los refugiados — identificando flujos migratorios y necesidades de poblaciones desplazadas. (Ejemplo prescrito del IB)</p>
+      </div>
+    </div>
+    <div class="al al-gold">
+      <strong>Conexión 3C:</strong> <span class="mk mk-k">IDENTIDAD</span> — los refugiados pierden documentos pero no su identidad; la tecnología puede preservarla. <span class="mk mk-k">PODER</span> — quien controla los datos de identidad de los refugiados tiene poder sobre su acceso a servicios. <span class="mk mk-e">POLITICO / SOCIAL</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── 5.1C ── -->
+<section class="sec" id="5-1c">
+  <span class="sec-eye">5.1C · Área prescrita</span>
+  <h2>El futuro del trabajo</h2>
+  <div class="line"></div>
+
+  <div class="tab-row">
+    <button class="tb on" onclick="st('dc',this)">Automatización y empleo</button>
+    <button class="tb" onclick="st('dc2',this)">Empleo significativo</button>
+    <button class="tb" onclick="st('dc3',this)">Necesidades colectivas</button>
+  </div>
+
+  <div id="dc" class="tp on">
+    <h3>Automatización y empleo</h3>
+    <p>El 50% de los trabajos podrian automatizarse con tecnologias actuales, aunque solo el 5% pueden automatizarse por completo. El informe Brookings indica que ~36 millones de puestos son susceptibles de automatización en EE.UU.</p>
+    <div class="two">
+      <div class="col-b col-g">
+        <h4>Argumentos: la automatización crea empleo</h4>
+        <ul>
+          <li>Crea nuevos empleos en desarrollo tecnológico, hardware y aplicaciones</li>
+          <li>Aumenta la productividad y genera crecimiento económico</li>
+          <li>Plataformas digitales de talento mejoran la coincidencia empleado-empresa</li>
+          <li>Herramientas digitales de reciclaje y capacitacion (STEM)</li>
+        </ul>
+      </div>
+      <div class="col-b col-r">
+        <h4>Argumentos: la automatización destruye empleo</h4>
+        <ul>
+          <li>Destruccion acelerada de empleos rutinarios y de baja calificacion</li>
+          <li>Aumento de la desigualdad salarial y de ingresos</li>
+          <li>Calidad del empleo reducida (economia gig, trabajos temporales)</li>
+          <li>Perdida de protección social para trabajadores por contrato</li>
+        </ul>
+      </div>
+    </div>
+    <div class="al al-teal">
+      <strong>Pregunta de examen prescrita (Sección B):</strong> "Se afirma que las nuevas generaciones de maquinas inteligentes reemplazaran una cantidad significativa de trabajos humanos actuales, pero finalmente conduciran a la creación de mas empleos. Discuta esta afirmacion refiriendose a un ejemplo del mundo real." [12 pts]
+    </div>
+  </div>
+
+  <div id="dc2" class="tp">
+    <h3>Empleo significativo y seguro</h3>
+    <p>El bienestar de una persona generalmente esta relacionado con el trabajo significativo que realiza y la seguridad de su empleo. Las tecnologias digitales pueden tanto mejorar como amenazar estas condiciones.</p>
+    <table class="tbl">
+      <thead><tr><th>Modalidad</th><th>Oportunidades</th><th>Riesgos</th></tr></thead>
+      <tbody>
+        <tr><td>Teletrabajo</td><td>Flexibilidad, ahorro en traslados, acceso a empleos globales</td><td>Aislamiento, dificultad de desconexion, vigilancia digital del empleado</td></tr>
+        <tr><td>Plataformas de talento (LinkedIn, Upwork)</td><td>Transparencia y eficiencia en reclutamiento, menor desempleo friccional</td><td>Reducción a metricas digitales, sesgos algoritmicos en selección</td></tr>
+        <tr><td>IA en selección (ej. Pregunta M24)</td><td>Objetividad potencial, reducción de sesgos humanos</td><td>Refuerzo de sesgos históricos, opacidad algoritmica</td></tr>
+        <tr><td>Capacitacion digital (MOOCs, Coursera)</td><td>Acceso a reciclaje profesional sin costo de traslado</td><td>Exclusión de adultos con baja alfabetizacion digital</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="dc3" class="tp">
+    <h3>Necesidades colectivas de los trabajadores</h3>
+    <p>La economia gig ha cambiado la definición tradicional de empleo. Las plataformas digitales conectan proveedores de servicios a corto plazo con clientes, generando nuevas formas de trabajo con implicaciones para la protección social.</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="ctag">Economia gig</div>
+        <h4>Plataformas de trabajo</h4>
+        <p>Uber, Lyft, Airbnb, Etsy, Fiverr. Las empresas clasifican trabajadores como "contratistas" limitando beneficios legales (seguro médico, licencia parental), aunque trabajen jornadas completas.</p>
+      </div>
+      <div class="card">
+        <div class="ctag">Organización laboral</div>
+        <h4>Trabajadores digitales organizados</h4>
+        <p>Ejemplo prescrito del IB: empleados de una plataforma de viajes compartidos crean una organización para construir un codigo del empleado y abogar por mejores condiciones de trabajo.</p>
+      </div>
+      <div class="card">
+        <div class="ctag">Desafio</div>
+        <h4>Erosion de sindicatos</h4>
+        <p>La globalización y la digitalización dificultan la regulación del trabajo. Los sindicatos tradicionales tienen menos poder cuando los "empleados" son técnicamente autoempleados según plataformas.</p>
+      </div>
+    </div>
+    <div class="al al-gold">
+      <strong>Conexión 3C:</strong> <span class="mk mk-k">PODER</span> — las plataformas digitales concentran poder sobre las condiciones laborales de millones de trabajadores. <span class="mk mk-k">VALORES Y ÉTICA</span> — la clasificación de trabajadores como contratistas es legal pero ética y socialmente cuestionable. <span class="mk mk-e">ECONOMICO / SOCIAL</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── INTERVENCIÓNES ── -->
+<section class="sec" id="intervenciones">
+  <span class="sec-eye">Ejemplos prescritos del IB + adicionales</span>
+  <h2>Intervenciones para indagación prolongada</h2>
+  <div class="line"></div>
+  <p>El IB proporciona ejemplos iniciales. Para la indagación ampliada, debes identificar ejemplos reales de tu propio entorno y evaluarlos usando los <strong>6 criterios de intervención</strong>.</p>
+
+  <!-- Intervención 1 -->
+  <div class="int-card">
+    <div class="int-hdr" style="background:var(--teal-bg);">
+      <span class="int-tag" style="background:var(--teal);color:#fff;">5.1A · Salud</span>
+      <span class="int-title">App de seguimiento y localizacion COVID-19 (Gobierno)</span>
+      <span class="badge b-teal">Ejemplo IB prescrito</span>
+    </div>
+    <div class="int-body">
+      <p>Una agencia gubernamental desarrolla una aplicación con codigos QR para rastrear contactos durante una pandemia. Al ingresar a un lugar, el usuario escanea el codigo y sus datos (nombre, número de telefono, hora) se registran en una base de datos gubernamental. Si un infectado estuvo en el lugar, se notifica automáticamente a los contactos.</p>
+      <div class="criteria-row">
+        <div class="cr-item" style="background:var(--green-bg);border-color:var(--green-b);">
+          <strong>Equidad</strong>Excluye a quienes no tienen smartphone. Requiere acceso a datos móviles.
+        </div>
+        <div class="cr-item" style="background:var(--red-bg);border-color:var(--red-b);">
+          <strong>Aceptabilidad</strong>Resistencia cultural por preocupaciones de privacidad. Confianza en el gobierno variable.
+        </div>
+        <div class="cr-item" style="background:var(--teal-bg);border-color:var(--teal-b);">
+          <strong>Costo</strong>Bajo costo financiero (app gratuita). Costos sociales: vigilancia potencial, uso de datos.
+        </div>
+        <div class="cr-item" style="background:var(--blue-bg);border-color:var(--blue-b);">
+          <strong>Viabilidad</strong>Técnicamente sencilla. Socialmente aceptable en emergencias. Barrera: no todos tienen smartphone.
+        </div>
+        <div class="cr-item" style="background:var(--purple-bg);border-color:var(--purple-b);">
+          <strong>Innovación</strong>Innovadora: primer rastreo masivo de este tipo. Potencial de uso extendido (vigilancia).
+        </div>
+        <div class="cr-item" style="background:var(--gold-bg);border-color:var(--gold-b);">
+          <strong>Ética</strong>Consentimiento implicito (no explicito). Uso potencial de datos para otros fines. Derecho a la privacidad vs. salud pública.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Intervención 2 -->
+  <div class="int-card">
+    <div class="int-hdr" style="background:var(--blue-bg);">
+      <span class="int-tag" style="background:var(--blue);color:#fff;">5.1B · Migracion</span>
+      <span class="int-title">Big Data para mapear la crisis de refugiados (ONG)</span>
+      <span class="badge b-blue">Ejemplo IB prescrito</span>
+    </div>
+    <div class="int-body">
+      <p>Una ONG propone emplear un enfoque basado en macrodatos para comprender y representar mejor la crisis de los refugiados — identificando flujos migratorios, necesidades de poblaciones desplazadas y recursos disponibles en tiempo casi real.</p>
+      <div class="criteria-row">
+        <div class="cr-item" style="background:var(--green-bg);border-color:var(--green-b);">
+          <strong>Equidad</strong>Da visibilidad a poblaciones invisibilizadas en estadisticas oficiales.
+        </div>
+        <div class="cr-item" style="background:var(--red-bg);border-color:var(--red-b);">
+          <strong>Aceptabilidad</strong>Los refugiados pueden resistirse si no confian en como se usaran sus datos.
+        </div>
+        <div class="cr-item" style="background:var(--teal-bg);border-color:var(--teal-b);">
+          <strong>Costo</strong>Alto costo de implementación técnica. Requiere colaboración con gobiernos y teleoperadoras.
+        </div>
+        <div class="cr-item" style="background:var(--blue-bg);border-color:var(--blue-b);">
+          <strong>Viabilidad</strong>Depende de acceso a datos de telecomunicaciones y cooperacion política de paises afectados.
+        </div>
+        <div class="cr-item" style="background:var(--purple-bg);border-color:var(--purple-b);">
+          <strong>Innovación</strong>Uso de datos de telefonia móvil como indicador indirecto de movimiento de poblaciones.
+        </div>
+        <div class="cr-item" style="background:var(--gold-bg);border-color:var(--gold-b);">
+          <strong>Ética</strong>¿Quien posee los datos? ¿Pueden usarse contra los propios refugiados? Privacidad vs. ayuda humanitaria.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Intervención 3 -->
+  <div class="int-card">
+    <div class="int-hdr" style="background:var(--gold-bg);">
+      <span class="int-tag" style="background:var(--gold);color:#fff;">5.1C · Trabajo</span>
+      <span class="int-title">Organización de trabajadores de plataformas digitales</span>
+      <span class="badge b-gold">Ejemplo IB prescrito</span>
+    </div>
+    <div class="int-body">
+      <p>Los empleados de una plataforma de viajes compartidos (ej. Uber, Lyft) crean una organización para compartir experiencias y construir un codigo del empleado que aboga por mejores condiciones de trabajo — salario mínimo, seguro de salud, derechos de sindicalización.</p>
+      <div class="criteria-row">
+        <div class="cr-item" style="background:var(--green-bg);border-color:var(--green-b);">
+          <strong>Equidad</strong>Busca nivelar la relación de poder entre plataforma y trabajador contratado.
+        </div>
+        <div class="cr-item" style="background:var(--red-bg);border-color:var(--red-b);">
+          <strong>Aceptabilidad</strong>Las empresas pueden resistirse; algunos conductores prefieren la flexibilidad actual.
+        </div>
+        <div class="cr-item" style="background:var(--teal-bg);border-color:var(--teal-b);">
+          <strong>Costo</strong>Las empresas argumentan que los costos laborales aumentados se trasladarian a usuarios.
+        </div>
+        <div class="cr-item" style="background:var(--blue-bg);border-color:var(--blue-b);">
+          <strong>Viabilidad</strong>Depende de leyes laborales locales. Reino Unido y California han avanzado en reclasificacion de trabajadores gig.
+        </div>
+        <div class="cr-item" style="background:var(--purple-bg);border-color:var(--purple-b);">
+          <strong>Innovación</strong>Adaptacion de organización laboral tradicional al contexto de plataformas digitales.
+        </div>
+        <div class="cr-item" style="background:var(--gold-bg);border-color:var(--gold-b);">
+          <strong>Ética</strong>¿Es ético que empresas multimillonarias clasifiquen a sus trabajadores como "contratistas" para evitar beneficios?
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRACTICA ── -->
+<section class="sec" id="práctica">
+  <span class="sec-eye">Evaluación externa</span>
+  <h2>Preguntas de práctica — Sección B</h2>
+  <div class="line"></div>
+  <p>Estas preguntas estan extraidas de libros de texto y examenes IB relacionados con 5.1 Bienestar Global.</p>
+
+  <div class="pq">
+    <span class="pq-label">5.1A · Desigualdad · [12 pts]</span>
+    <p>Las innovaciones digitales estan brindando acceso a alimentos saludables y nutritivos. Discuta esta afirmacion refiriendose a un ejemplo del mundo real.</p>
+  </div>
+  <div class="pq">
+    <span class="pq-label">5.1B · Envejecimiento · Prueba 1 NS N24 · [12 pts]</span>
+    <p>Se afirma que los exoesqueletos inteligentes aumentaran significativamente la calidad de vida de las personas mayores. Evalúe esta afirmacion.</p>
+  </div>
+  <div class="pq">
+    <span class="pq-label">5.1B · Salud · [12 pts]</span>
+    <p>El uso de las tecnologias digitales en el cuidado de personas mayores es cada vez mayor. Examine el uso de estas tecnologias haciendo referencia a un ejemplo del mundo real.</p>
+  </div>
+  <div class="pq">
+    <span class="pq-label">5.1C · Automatización · [12 pts]</span>
+    <p>Se afirma que las nuevas generaciones de maquinas inteligentes, impulsadas por avances en IA y robótica, reemplazaran una cantidad significativa de trabajos humanos actuales, pero finalmente conduciran a la creación de mas empleos. Discuta esta afirmacion refiriendose a un ejemplo del mundo real.</p>
+  </div>
+  <div class="pq">
+    <span class="pq-label">5.1C · IA en empleo · Prueba 1 NS M24 · [12 pts]</span>
+    <p>Se afirma que el uso de la IA clasificara con precision a los solicitantes de empleo. ¿En que medida esta de acuerdo con esta afirmacion?</p>
+  </div>
+
+  <div class="al al-green">
+    <strong>Como preparar una respuesta de 10–12 puntos para estas preguntas:</strong> Identifica el desafio global (5.1A, B o C), la intervención digital específica, conecta con las 3C de forma explicita, usa al menos 2 criterios del IB por nombre, presenta argumentos y contraargumentos en parrafos completos, y concluye con una posicion evaluativa que haga referencia a situaciones similares.
+  </div>
+</section>
+
+<!-- ── INDAGACIÓN ── -->
+<section class="sec" id="indagación">
+  <span class="sec-eye">Indagación ampliada NS</span>
+  <h2>Guia para la indagación prolongada</h2>
+  <div class="line"></div>
+  <p>Para cada área de 5.1, debes seleccionar una intervención real, investigarla y evaluarla usando el proceso de indagación ampliada del NS.</p>
+
+  <h3>Los 4 pasos de la indagación ampliada</h3>
+  <table class="tbl">
+    <thead><tr><th>Paso</th><th>Pregunta guia</th></tr></thead>
+    <tbody>
+      <tr><td>1. Determinar el enfoque</td><td>¿Cual es el desafio específico? ¿Que intervención digital lo aborda? ¿Quien es afectado?</td></tr>
+      <tr><td>2. Explorar e investigar</td><td>¿Cuales son los conceptos, contenidos y contextos (3C) relevantes? ¿Que fuentes primarias y secundarias usare?</td></tr>
+      <tr><td>3. Analizar la intervención</td><td>¿Que impactos positivos y negativos tiene? ¿Mitiga, mejora, intercede o resuelve el desafio?</td></tr>
+      <tr><td>4. Evaluar y recomendar</td><td>Usando los 6 criterios (equidad, aceptabilidad, costo, viabilidad, innovación, ética): ¿en que medida es efectiva? ¿Que recomendaciones para el futuro?</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Checklist de indagación — Bienestar Global</h3>
+  <ul class="cl">
+    <li>Identifica el desafío específico dentro de 5.1A, 5.1B o 5.1C con personas y comunidades reales afectadas</li>
+    <li>Selecciona una intervención digital concreta (tecnología + contexto específico)</li>
+    <li>Conecte la intervención con las 3C: ¿que Concepto esta en juego? ¿que Contenido (tecnología)? ¿en que Contexto ocurre?</li>
+    <li>Analiza tanto impactos positivos como negativos — el IB penaliza enfocarse solo en los negativos</li>
+    <li>Evalúa usando los 6 criterios de intervención del IB</li>
+    <li>Investigue al menos una intervención adicional del mundo real de su entorno local o regional</li>
+    <li>Concluye con recomendaciones específicas y realistas para acciones futuras</li>
+    <li>Compara con situaciones similares en otros contextos geográficos o tecnológicos</li>
+  </ul>
+
+  <div class="al al-teal">
+    <strong>Nota del IB (Capítulo 6):</strong> "Debes considerar ejemplos e intervenciones reales de su propio entorno para evaluar su eficacia y recomendar pasos a seguir para futuras acciones." — Las intervenciones locales y regionales son altamente valoradas en la indagación prolongada.
+  </div>
+</section>
+
+</div>
+<footer>Sociedad Digital · Nivel Superior · 5.1 Bienestar Global &nbsp;|&nbsp; Basado en Capítulos 5 y 6 del libro de texto IB y guia del programa</footer>
+
+<script>
+function st(id,btn){
+  const parent=btn.closest('.sec');
+  parent.querySelectorAll('.tp').forEach(p=>p.classList.remove('on'));
+  parent.querySelectorAll('.tb').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>
