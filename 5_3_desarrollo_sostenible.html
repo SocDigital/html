@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5.3 Desarrollo Sostenible — Sociedad Digital NS</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f0f4f0;--surface:#fff;--ink:#1c1c28;--ink2:#3d3d52;--muted:#7a7a8e;--border:#d8e0d8;
+  --green:#1a6640;--teal:#0e6b6b;--gold:#b07820;--red:#b83232;--blue:#1f5c99;--purple:#5e3a8a;
+  --green-bg:#eef7f1;--teal-bg:#e8f5f5;--gold-bg:#fdf6e8;--red-bg:#fdf0f0;--blue-bg:#eef4fb;--purple-bg:#f5f0fa;
+  --green-b:#a8d8b8;--teal-b:#a0d4d4;--gold-b:#e8c870;--red-b:#f0b8b8;--blue-b:#b8d4f0;--purple-b:#cdb8e8;
+}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:15px;}
+
+.hdr{background:linear-gradient(135deg,#0a3d20 0%,#1a6640 55%,#0e6b6b 100%);color:#fff;padding:3.5rem 2rem 3rem;text-align:center;position:relative;}
+.hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold),#a8ffc8,var(--green),var(--teal));}
+.hdr .eye{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:#a8ffc8;margin-bottom:.8rem;display:block;}
+.hdr h1{font-family:'DM Serif Display',serif;font-size:clamp(2rem,5vw,3.4rem);line-height:1.1;margin-bottom:.4rem;}
+.hdr h1 em{font-style:italic;color:#ffd770;}
+.hdr .sub{color:rgba(255,255,255,.6);font-size:.92rem;}
+
+.nav{position:sticky;top:0;z-index:200;background:var(--ink);display:flex;justify-content:center;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.08);}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:#8888a0;text-decoration:none;padding:.8rem 1rem;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;}
+.nav a:hover{color:#a8ffc8;border-bottom-color:#a8ffc8;}
+
+.wrap{max-width:920px;margin:0 auto;padding:0 1.5rem 5rem;}
+.sec{margin-top:5rem;}
+.sec-eye{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:.4rem;display:block;}
+.sec h2{font-family:'DM Serif Display',serif;font-size:2rem;line-height:1.2;margin-bottom:.4rem;}
+.line{width:3rem;height:3px;background:var(--green);border-radius:2px;margin-bottom:1.5rem;}
+h3{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--green);margin:2.5rem 0 .75rem;}
+h4{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:1.4rem 0 .5rem;}
+p{margin-bottom:.85rem;color:var(--ink2);}p:last-child{margin-bottom:0;}strong{color:var(--ink);}
+
+.tab-row{display:flex;flex-wrap:wrap;border-bottom:2px solid var(--border);margin-bottom:1.5rem;}
+.tb{background:none;border:none;padding:.7rem 1.3rem;font-family:'DM Sans',sans-serif;font-size:.88rem;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;font-weight:500;}
+.tb:hover{color:var(--green);}.tb.on{color:var(--green);border-bottom-color:var(--green);}
+.tp{display:none;}.tp.on{display:block;}
+
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem;margin:1.5rem 0;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.1rem 1.2rem;border-top:3px solid var(--green);}
+.card .ctag{font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:.35rem;}
+.card h4{margin-top:0;margin-bottom:.45rem;color:var(--green);}
+.card p{font-size:.85rem;margin:0;}
+
+.tbl{width:100%;border-collapse:collapse;margin:1.2rem 0;font-size:.87rem;}
+.tbl th{background:var(--ink);color:#a8ffc8;font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;padding:.75rem 1rem;text-align:left;}
+.tbl td{padding:.85rem 1rem;border-bottom:1px solid var(--border);vertical-align:top;}
+.tbl tr:nth-child(even) td{background:#f5faf5;}
+.tbl td:first-child{font-weight:600;color:var(--green);}
+
+.al{padding:1rem 1.3rem;border-radius:6px;border-left:4px solid;margin:1.5rem 0;font-size:.93rem;}
+.al-green{background:var(--green-bg);border-color:var(--green);}
+.al-teal{background:var(--teal-bg);border-color:var(--teal);}
+.al-gold{background:var(--gold-bg);border-color:var(--gold);}
+.al-blue{background:var(--blue-bg);border-color:var(--blue);}
+.al-red{background:var(--red-bg);border-color:var(--red);}
+
+.int-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:1.2rem;box-shadow:0 2px 10px rgba(0,0,0,.05);}
+.int-hdr{padding:.85rem 1.3rem;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;}
+.int-tag{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.18rem .5rem;border-radius:3px;font-weight:700;flex-shrink:0;}
+.int-title{font-size:.92rem;font-weight:600;}
+.int-body{padding:1.2rem 1.4rem;}
+.int-body p{font-size:.9rem;}
+.criteria-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.65rem;margin-top:1rem;}
+.cr-item{padding:.75rem .9rem;border-radius:6px;font-size:.83rem;border:1px solid;}
+.cr-item strong{display:block;font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem;}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.2rem 0;}
+.col-b{padding:1rem 1.1rem;border-radius:7px;border:1px solid;font-size:.87rem;}
+.col-b h4{margin-top:0;margin-bottom:.5rem;}
+.col-b ul{padding-left:1.2rem;}.col-b li{margin-bottom:.4rem;}
+.col-g{background:var(--green-bg);border-color:var(--green-b);}
+.col-g h4{color:var(--green);}
+.col-r{background:var(--red-bg);border-color:var(--red-b);}
+.col-r h4{color:var(--red);}
+.col-t{background:var(--teal-bg);border-color:var(--teal-b);}
+.col-t h4{color:var(--teal);}
+.col-o{background:var(--gold-bg);border-color:var(--gold-b);}
+.col-o h4{color:var(--gold);}
+
+.mk{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.58rem;padding:.1rem .4rem;border-radius:3px;margin:0 .1rem;vertical-align:middle;}
+.mk-g{background:var(--green);color:#fff;}
+.mk-k{background:var(--ink);color:#ffd770;}
+.mk-e{background:var(--gold-bg);color:var(--gold);border:1px solid var(--gold-b);}
+
+.tensión{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:1.5rem 0;}
+.tensión-title{background:var(--green);color:#fff;padding:.65rem 1.2rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;}
+.tensión-body{display:grid;grid-template-columns:1fr 1fr;}
+.tensión-col{padding:1rem 1.2rem;font-size:.87rem;}
+.tensión-col h4{margin-top:0;margin-bottom:.5rem;font-size:.68rem;}
+.tensión-col ul{padding-left:1.2rem;}.tensión-col li{margin-bottom:.4rem;color:var(--ink2);}
+.tensión-col.left{border-right:1px solid var(--border);background:var(--green-bg);}
+.tensión-col.left h4{color:var(--green);}
+.tensión-col.right{background:var(--red-bg);}
+.tensión-col.right h4{color:var(--red);}
+
+/* ODS GRID */
+.ods-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:.75rem;margin:1.2rem 0;}
+.ods-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.85rem 1rem;text-align:center;}
+.ods-num{font-family:'DM Serif Display',serif;font-size:1.8rem;color:var(--green);line-height:1;margin-bottom:.3rem;}
+.ods-label{font-size:.78rem;color:var(--ink2);font-weight:600;margin-bottom:.3rem;}
+.ods-tech{font-size:.72rem;color:var(--muted);font-style:italic;}
+
+/* STAT GRID */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.85rem;margin:1.2rem 0;}
+.stat-box{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem;text-align:center;}
+.stat-num{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--green);line-height:1;margin-bottom:.3rem;}
+.stat-label{font-size:.78rem;color:var(--muted);}
+
+.pq{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.1rem 1.3rem;margin-bottom:.9rem;}
+.pq .pq-label{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem;display:block;}
+.pq p{margin:0;font-size:.92rem;}
+
+.cl{list-style:none;}
+.cl li{display:flex;align-items:flex-start;gap:.6rem;padding:.5rem .6rem;font-size:.88rem;color:var(--ink2);border-bottom:1px solid var(--border);}
+.cl li:last-child{border-bottom:none;}
+.cl li::before{content:'□';font-size:1rem;color:var(--green);flex-shrink:0;line-height:1.4;}
+
+.badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .6rem;border-radius:20px;font-weight:700;vertical-align:middle;margin-left:.4rem;}
+.b-g{background:var(--green-bg);color:var(--green);border:1px solid var(--green-b);}
+.b-t{background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal-b);}
+
+footer{text-align:center;padding:2.5rem 1rem;border-top:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:5rem;}
+@media(max-width:620px){.two{grid-template-columns:1fr;}.card-grid{grid-template-columns:1fr;}.criteria-row{grid-template-columns:1fr;}.tensión-body{grid-template-columns:1fr;}.stat-grid{grid-template-columns:1fr 1fr;}.ods-grid{grid-template-columns:repeat(2,1fr);}.nav a{padding:.65rem .7rem;font-size:.58rem;}}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <span class="eye">Sociedad Digital · Nivel Superior · Extension NS</span>
+  <h1>5.3 <em>Desarrollo Sostenible</em></h1>
+  <p class="sub">Cambio climático, recursos responsables y gestión de residuos en la era digital · Guia de estudio</p>
+</header>
+
+<nav class="nav">
+  <a href="#overview">Visión general</a>
+  <a href="#5-3a">5.3A Clima</a>
+  <a href="#5-3b">5.3B Recursos</a>
+  <a href="#5-3c">5.3C Residuos</a>
+  <a href="#ods">ODS ONU</a>
+  <a href="#intervenciones">Intervenciones</a>
+  <a href="#práctica">Práctica examen</a>
+  <a href="#indagación">Indagación</a>
+</nav>
+
+<div class="wrap">
+
+<!-- ── VISION GENERAL ── -->
+<section class="sec" id="overview">
+  <span class="sec-eye">Conocimiento esencial prescrito</span>
+  <h2>Desarrollo Sostenible en la sociedad digital</h2>
+  <div class="line"></div>
+  <p><strong>Desarrollo sostenible</strong> es la capacidad de alcanzar los objetivos de desarrollo humano sin agotar los recursos naturales de los que dependemos. Las tecnologías digitales son fundamentales para el avance del desarrollo humano — pero la digitalización en si misma no es innatamente sostenible.</p>
+
+  <div class="tensión">
+    <div class="tensión-title">La paradoja central: tecnología digital y sostenibilidad</div>
+    <div class="tensión-body">
+      <div class="tensión-col left">
+        <h4>La tecnología digital APOYA la sostenibilidad</h4>
+        <ul>
+          <li>IoT para monitorear y optimizar el consumo de energía y agua</li>
+          <li>IA para modelos climáticos mas precisos y acción preventiva</li>
+          <li>Big Data para medir huella de carbono y certificar cadenas de suministro</li>
+          <li>Blockchain para rastrear y verificar emisiones de GEI</li>
+          <li>Ciudades inteligentes que reducen tráfico, contaminación y residuos</li>
+          <li>Redes sociales para concienciar sobre acción climática</li>
+        </ul>
+      </div>
+      <div class="tensión-col right">
+        <h4>La tecnología digital AMENAZA la sostenibilidad</h4>
+        <ul>
+          <li>Centros de datos consumen ~3% de la electricidad mundial</li>
+          <li>Mas de 50 millones de toneladas de e-waste al año</li>
+          <li>Extracción de cobalto y litio para baterias degrada ecosistemas</li>
+          <li>La digitalización acelera modos de vida insostenibles</li>
+          <li>Obsolescencia programada genera reemplazo acelerado de dispositivos</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="ctag">5.3A</div>
+      <h4>Cambio climático y acción</h4>
+      <p>Operaciones mundiales, nacionales, regionales y locales para hacer frente al cambio climático usando tecnologías digitales.</p>
+    </div>
+    <div class="card">
+      <div class="ctag">5.3B</div>
+      <h4>Uso responsable de los recursos</h4>
+      <p>Consumo, producción y distribución responsables. Diseño de infraestructuras sostenibles: energia, transporte, espacios construidos.</p>
+    </div>
+    <div class="card">
+      <div class="ctag">5.3C</div>
+      <h4>Gestión de contaminación y residuos</h4>
+      <p>Seguimiento, prevención y reducción de contaminación y residuos mediante tecnologías digitales y economia circular.</p>
+    </div>
+  </div>
+
+  <div class="al al-green">
+    <strong>Tensión central del tema:</strong> <span class="mk mk-k">SISTEMAS</span> — la tecnología digital es parte del problema (e-waste, consumo energético) y parte de la solución (monitoreo, eficiencia). <span class="mk mk-k">VALORES Y ÉTICA</span> — quién es responsable del impacto ambiental de la digitalización: individuos, empresas o gobiernos?
+  </div>
+</section>
+
+<!-- ── 5.3A ── -->
+<section class="sec" id="5-3a">
+  <span class="sec-eye">5.3A · Área prescrita</span>
+  <h2>Cambio climático y acción</h2>
+  <div class="line"></div>
+
+  <div class="tab-row">
+    <button class="tb on" onclick="st('da',this)">Operaciones globales</button>
+    <button class="tb" onclick="st('da2',this)">Acción local y regional</button>
+    <button class="tb" onclick="st('da3',this)">Concienciación digital</button>
+  </div>
+
+  <div id="da" class="tp on">
+    <h3>Operaciones mundiales para hacer frente al cambio climatico</h3>
+    <p>Las tecnologías digitales estan transformando la capacidad de monitorear, modelar y responder al cambio climático a escala global. Una mayor recopilación de datos mejora nuestra comprensión de los modelos climáticos y brinda datos mas sustanciales para actuar.</p>
+    <table class="tbl">
+      <thead><tr><th>Tecnología</th><th>Aplicación en acción climatica global</th><th>Ejemplo real</th></tr></thead>
+      <tbody>
+        <tr><td>Modelos climaticos IA / ML</td><td>Predicción de eventos climáticos extremos con mayor precision; aprendizaje automático mejora predicciones de velocidad del viento para energías renovables</td><td>Organizaciones como NOAA y NASA usan ML para modelar cambio climatico</td></tr>
+        <tr><td>Imágenes satelitales</td><td>Monitoreo de glaciares, deforestación, cobertura de hielo y emisiones de carbono desde el espacio</td><td>Transmisión en directo de plataformas de hielo para concienciar (ejemplo prescrito IB)</td></tr>
+        <tr><td>Blockchain</td><td>Rastrear y verificar emisiones de GEI en cadenas de suministro; autenticacion de reducción de huella de carbono</td><td>Plataformas blockchain para mercados de carbono voluntarios</td></tr>
+        <tr><td>Big Data</td><td>Análisis de patrones globales de emisión; vinculación de datos de múltiples fuentes para políticas climáticas</td><td>ODS ONU usa Big Data para monitorear progreso en 17 objetivos</td></tr>
+        <tr><td>Drones</td><td>Reforestación en áreas inaccesibles o peligrosas después de incendios forestales</td><td>California: drones esparcen semillas post-incendio (efectividad &lt;20%)</td></tr>
+      </tbody>
+    </table>
+    <div class="al al-gold">
+      <strong>Conexión 3C:</strong> <span class="mk mk-k">CAMBIO</span> — el cambio climatico es el desafío de cambio sistémico mas grande de nuestra era. <span class="mk mk-k">SISTEMAS</span> — los modelos climáticos son sistemas complejos donde pequeños errores de datos producen grandes variaciones en las predicciones. <span class="mk mk-e">AMBIENTAL / POLITICO</span>
+    </div>
+  </div>
+
+  <div id="da2" class="tp">
+    <h3>Operaciones nacionales, regionales y locales</h3>
+    <p>El IoT y otras tecnologías digitales se estan usando para recopilar y procesar datos locales para tomar acción específica en contextos nacionales y regionales.</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="ctag">IoT local</div>
+        <h4>Monitoreo de consumo energético</h4>
+        <p>Aplicaciones de monitoreo de energia en el hogar muestran uso en tiempo real. Electrodomésticos inteligentes que automatizan el control de energía para minimizar consumo. Medición inteligente en redes eléctricas.</p>
+      </div>
+      <div class="card">
+        <div class="ctag">Predicción ML</div>
+        <h4>Optimización de energías renovables</h4>
+        <p>Modelos de aprendizaje automático predicen con mayor precision la producción de turbinas eolicas y paneles solares según el clima. Aumenta competitividad del sector renovable.</p>
+      </div>
+      <div class="card">
+        <div class="ctag">Ciudad inteligente</div>
+        <h4>Pittsburgh: semaforos inteligentes</h4>
+        <p>Sensores en semaforos que analizan y responden a patrones de tráfico en tiempo real. Resultado: reducción del tráfico en 41% y de emisiones en 21%. <span class="mk mk-k">SISTEMAS</span></p>
+      </div>
+      <div class="card">
+        <div class="ctag">Ciudad inteligente</div>
+        <h4>Tengah, Singapur</h4>
+        <p>Ciudad ecologica de 42.000 viviendas construida desde 2021 con corredor ecológico, estaciones de carga eléctrica, diseño para vehiculos autónomas y cero autos en superficie.</p>
+      </div>
+    </div>
+    <div class="al al-teal">
+      <strong>Pregunta de práctica relacionada (Sección B):</strong> "Las innovaciones digitales estan haciendo avanzar la vigilancia del clima en todo el mundo. Utilizando un ejemplo del mundo real, discuta el impacto de este tipo de innovación digital para ayudar a hacer frente al cambio climático." [12 pts]
+    </div>
+  </div>
+
+  <div id="da3" class="tp">
+    <h3>Concienciación y activismo digital para el clima</h3>
+    <p>Las redes sociales y las plataformas digitales se utilizan para fomentar la acción climática, crear conciencia y coordinar esfuerzos globales de presión ciudadana.</p>
+    <div class="two">
+      <div class="col-b col-g">
+        <h4>Potencial del activismo digital climático</h4>
+        <ul>
+          <li>Campañas en redes sociales (#FridaysForFuture, #ClimateAction) de alcance global instantaneo</li>
+          <li>Transmisión en directo de eventos climáticos (ejemplo prescrito IB): plataformas de hielo, incendios, inundaciones</li>
+          <li>Crowdfunding para proyectos de energia renovable comunitarios</li>
+          <li>Apps de calculadora de huella de carbono personal</li>
+          <li>Aplicaciones de RA que visualizan impacto de compras (ejemplo prescrito IB)</li>
+        </ul>
+      </div>
+      <div class="col-b col-r">
+        <h4>Limitaciones del activismo digital climatico</h4>
+        <ul>
+          <li>Slacktivism: "me gusta" y compartir sin acción real</li>
+          <li>Cámaras de eco que predican a los ya convencidos</li>
+          <li>Desinformación climática que se difunde igual de rápido</li>
+          <li>Los paises con mayor emisión tienen menor conciencia digital climática</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 5.3B ── -->
+<section class="sec" id="5-3b">
+  <span class="sec-eye">5.3B · Área prescrita</span>
+  <h2>Uso responsable de los recursos</h2>
+  <div class="line"></div>
+
+  <div class="tab-row">
+    <button class="tb on" onclick="st('db',this)">Consumo y producción</button>
+    <button class="tb" onclick="st('db2',this)">Infraestructuras compartidas</button>
+    <button class="tb" onclick="st('db3',this)">Economia circular</button>
+  </div>
+
+  <div id="db" class="tp on">
+    <h3>Consumo, producción y distribución responsables</h3>
+    <p>El ODS 12 de la ONU se centra en el consumo y la producción responsables. Las tecnologías digitales pueden hacer los procesos mas eficientes — pero también pueden acelerar el consumo insostenible.</p>
+    <table class="tbl">
+      <thead><tr><th>Recurso</th><th>Desafio</th><th>Intervención digital</th></tr></thead>
+      <tbody>
+        <tr><td>Agua</td><td>Solo el 3% del agua mundial es potable; producción y agricultura contaminan ríos y lagos</td><td>Sensores IoT en bombas de agua; monitoreo de calidad en tiempo real; riego de precisión con sensores de humedad</td></tr>
+        <tr><td>Energia</td><td>Dependencia de combustibles fosiles; variabilidad de energias renovables</td><td>Redes inteligentes (smart grid); aplicaciones de monitoreo de consumo; ML para optimizar producción renovable</td></tr>
+        <tr><td>Alimentos</td><td>Desperdicio en cadena de producción, almacenamiento y distribución</td><td>IoT en transporte de alimentos; blockchain para trazabilidad; empaques inteligentes que monitorean calidad</td></tr>
+        <tr><td>Fabricacion</td><td>Producción lineal genera residuos; materiales no renovables en dispositivos digitales</td><td>Impresión 3D con plástico reciclado (ejemplo prescrito IB); fabricacion aditiva que reduce desperdicio vs. sustractiva</td></tr>
+      </tbody>
+    </table>
+    <div class="al al-gold">
+      <strong>Conexión 3C:</strong> <span class="mk mk-k">SISTEMAS</span> — el consumo digital es un sistema global donde cada dispositivo implica cadenas de extracción, fabricación, uso y descarte. <span class="mk mk-k">VALORES Y ÉTICA</span> — ¿es ético que empresas usen obsolescencia programada para forzar reemplazo de productos? <span class="mk mk-e">AMBIENTAL / ECONOMICO</span>
+    </div>
+  </div>
+
+  <div id="db2" class="tp">
+    <h3>Infraestructuras y recursos compartidos</h3>
+    <p>Las ciudades inteligentes combinan infraestructura fisica con tecnologias de la información para crear entornos mas sostenibles y eficientes.</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="ctag">Transporte</div>
+        <h4>Movilidad inteligente</h4>
+        <p>GPS y GIS para optimizar rutas de transporte público. Vehículos autónomas reduciran accidentes y emisiones. Estaciones de carga eléctrica integradas en planificación urbana (Oslo, Singapur).</p>
+      </div>
+      <div class="card">
+        <div class="ctag">Energia</div>
+        <h4>Red eléctrica inteligente</h4>
+        <p>Medicion inteligente permite a empresas aumentar o restringir el flujo de electricidad para reducir desperdicio y garantizar suministro adecuado en horas pico. <span class="mk mk-k">SISTEMAS</span></p>
+      </div>
+      <div class="card">
+        <div class="ctag">Residuos</div>
+        <h4>Seul: contenedores inteligentes</h4>
+        <p>Botes de basura que programan automáticamente las recolecciones cuando estan llenos. Resultado: reducción del costo de recolección de basura en un <strong>83%</strong>. Ejemplo de ciudad inteligente con impacto real medible.</p>
+      </div>
+      <div class="card">
+        <div class="ctag">Espacio urbano</div>
+        <h4>Virtual Singapore</h4>
+        <p>Modelo 3D digital de toda la ciudad usado para planificación urbana, simulación de emergencias y diseño de infraestructura sostenible antes de construir fisicamente.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="db3" class="tp">
+    <h3>Economia circular: del modelo lineal al círculo</h3>
+    <p>La <strong>economia circular</strong> reutiliza y recicla recursos existentes para minimizar el desperdicio y reducir la demanda de nuevos materiales, en contraste con el modelo lineal "producir-usar-desechar".</p>
+    <div class="al al-red">
+      <strong>Obsolescencia programada:</strong> Desarrollo de productos con vida útil intencionalmente corta. En EE.UU., 350 millones de cartuchos de impresora terminan en vertederos cada año. En 2017, una demanda francesa acuso a Epson, HP, Canon y Brother de mostrar "fin de vida" prematuramente — violando la Ley Hamon que prohibe reducir deliberadamente la vida útil del producto. Apple recibio una queja similar por ralentizar iPhones antiguos. <span class="mk mk-k">VALORES Y ÉTICA</span> <span class="mk mk-k">PODER</span>
+    </div>
+    <div class="two">
+      <div class="col-b col-g">
+        <h4>Hacia la economia circular</h4>
+        <ul>
+          <li><strong>Impresión 3D con materiales reciclados:</strong> diseño de artículos del hogar con plástico reciclado (ejemplo prescrito IB)</li>
+          <li><strong>ecoATM:</strong> mas de 4.500 quioscos en EE.UU. que compran teléfonos usados; han mantenido 28 millones de telefonos fuera de vertederos</li>
+          <li><strong>Políticas de recompra corporativa:</strong> empresas recompran dispositivos obsoletos para integrar piezas en productos futuros</li>
+          <li><strong>Impresion 3D / RA</strong> para visualizar impacto de residuos de compras (ejemplo prescrito IB)</li>
+        </ul>
+      </div>
+      <div class="col-b col-r">
+        <h4>Obstáculos para la economía circular</h4>
+        <ul>
+          <li>Empresas priorizan ganancia sobre sostenibilidad</li>
+          <li>Falta de regulación global uniforme sobre vida útil de productos</li>
+          <li>Consumidores no tienen acceso fácil a opciones circulares</li>
+          <li>Los procesos de reciclaje de e-waste son costosos o contaminantes</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 5.3C ── -->
+<section class="sec" id="5-3c">
+  <span class="sec-eye">5.3C · Área prescrita</span>
+  <h2>Gestión de la contaminación y los residuos</h2>
+  <div class="line"></div>
+  <p>La sostenibilidad ambiental implica la gestión de la contaminación y los residuos a través del seguimiento, la prevencion y la reducción. La transformación digital de la sostenibilidad ambiental — IA, Big Data, computacion en nube e IoT — se centra en cuatro áreas: control de contaminación, gestión de residuos, producción sostenible y sostenibilidad urbana.</p>
+
+  <div class="tab-row">
+    <button class="tb on" onclick="st('dc',this)">Residuos electrónicos</button>
+    <button class="tb" onclick="st('dc2',this)">Seguimiento y control</button>
+    <button class="tb" onclick="st('dc3',this)">Prevención y reducción</button>
+  </div>
+
+  <div id="dc" class="tp on">
+    <h3>Residuos electrónicos (e-waste): el desafio del siglo digital</h3>
+    <div class="stat-grid">
+      <div class="stat-box">
+        <div class="stat-num">&gt;50M</div>
+        <div class="stat-label">toneladas de e-waste al año en el mundo</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">150M</div>
+        <div class="stat-label">teléfonos móviles desechados cada año</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">2%</div>
+        <div class="stat-label">del total de residuos en vertederos</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">70%</div>
+        <div class="stat-label">de los residuos TOXICOS en vertederos</div>
+      </div>
+    </div>
+    <div class="al al-red">
+      <strong>El problema del e-waste en detalle:</strong> Los componentes electrónicos contienen plomo, mercurio y berilio. Expuestos al calor, contaminan el aire; con la lluvia, contaminan fuentes de agua. Los servicios de e-waste frecuentemente se subcontratan a paises en desarrollo donde las partes no recuperables se queman — aumentando la contaminación del aire y los riesgos de salud locales. Esto convierte un problema ambiental en uno de <strong>justicia global</strong>. <span class="mk mk-k">EQUIDAD</span> <span class="mk mk-k">VALORES Y ÉTICA</span>
+    </div>
+    <div class="two">
+      <div class="col-b col-g">
+        <h4>Intervenciones digitales para e-waste</h4>
+        <ul>
+          <li>Servicios de e-waste que clasifican, desmantelan y reciclan componentes</li>
+          <li>Quioscos automatizados (ecoATM) que compran telefonos usados</li>
+          <li>Impresión 3D con materiales reciclados reduce demanda de nuevos materiales</li>
+          <li>Blockchain para rastrear ciclo de vida de dispositivos electrónicos</li>
+          <li>Políticas de recompra corporativa que incentivan durabilidad</li>
+        </ul>
+      </div>
+      <div class="col-b col-r">
+        <h4>Limitaciones actuales</h4>
+        <ul>
+          <li>Procesos de reciclaje costosos; solo una fracción se recicla correctamente</li>
+          <li>E-waste enviado a paises en desarrollo viola acuerdos internacionales</li>
+          <li>Mineria de materiales para nuevos dispositivos sigue creciendo</li>
+          <li>Sin regulación global, cada pais tiene estándares distintos</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="dc2" class="tp">
+    <h3>Seguimiento y control de contaminación</h3>
+    <p>Las tecnologías digitales mejoran significativamente nuestra capacidad de monitorear en tiempo real diferentes tipos de contaminación: aire, agua, suelo y lumínica.</p>
+    <table class="tbl">
+      <thead><tr><th>Tipo de contaminación</th><th>Tecnología de monitoreo</th><th>Ejemplo real</th></tr></thead>
+      <tbody>
+        <tr><td>Agua</td><td>Sensores IoT en redes de alcantarillado y fuentes de agua; monitoreo de desbordamientos de tormentas</td><td>Reino Unido: monitoreo automatizado revelo que aumento aparente del 37% en desbordamientos fue por mejor deteccion, no por mayor contaminación</td></tr>
+        <tr><td>Aire</td><td>Sensores de calidad del aire en ciudades inteligentes; GPS en vehiculos de recolección de datos</td><td>Pittsburgh: reducción del 21% de emisiones en carretera con semaforos inteligentes</td></tr>
+        <tr><td>Residuos sólidos</td><td>RFID en contenedores para rastrear residuos domésticos; sistemas GPS para logística de recolección</td><td>Seúl: contenedores inteligentes que se autoprograman cuando estan llenos</td></tr>
+        <tr><td>Residuos electrónicos</td><td>Chips de rastreo en dispositivos; plataformas de e-commerce para residuos electrónicos</td><td>RFID para rastrear cantidad y calidad de separación de residuos electrónicos en hogares</td></tr>
+      </tbody>
+    </table>
+    <div class="al al-teal">
+      <strong>Nota importante:</strong> La Agencia Europea de Medio Ambiente (2021) señala que la mayor parte de la digitalización avanzada en la gestión de residuos esta todavia en las primeras etapas de desarrollo. Esto significa que hay amplio espacio para intervenciones innovadoras — y también incertidumbre sobre la efectividad a largo plazo. <span class="mk mk-e">VIABILIDAD</span> <span class="mk mk-e">INNOVACION</span>
+    </div>
+  </div>
+
+  <div id="dc3" class="tp">
+    <h3>Prevencion y reducción de contaminación</h3>
+    <p>La prevencion es mas eficiente que el tratamiento. Las tecnologias digitales se usan para cambiar comportamientos antes de que se genere contaminación o residuos.</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="ctag">Apps educativas</div>
+        <h4>Apps de gestión de residuos</h4>
+        <p>Aplicaciones que proporcionan información instantanea sobre como eliminar residuos responsablemente en el hogar. Mensajes personalizados combinados con programas de prevención de residuos.</p>
+      </div>
+      <div class="card">
+        <div class="ctag">Gamificacion</div>
+        <h4>Juegos educativos sobre residuos</h4>
+        <p>Juegos para que niños aprendan a gestionar residuos responsablemente. Gamificación del comportamiento sostenible para cambiar hábitos desde la infancia. <span class="mk mk-k">CAMBIO</span></p>
+      </div>
+      <div class="card">
+        <div class="ctag">Realidad aumentada</div>
+        <h4>App RA de impacto de compras</h4>
+        <p>Artista digital promueve economia circular con RA que visualiza repercusiones en materia de residuos de compras habituales. Ejemplo prescrito IB: permite ver el "costo invisible" de cada producto.</p>
+      </div>
+      <div class="card">
+        <div class="ctag">Computación verde</div>
+        <h4>Diseño sostenible de hardware</h4>
+        <p>Computación verde: diseño, ingenieria, fabricación, uso y eliminación de computadoras para reducir impacto ambiental. Prioriza eficiencia energética y eliminacion adecuada de e-waste.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ODS ── -->
+<section class="sec" id="ods">
+  <span class="sec-eye">Marco global</span>
+  <h2>Objetivos de Desarrollo Sostenible ONU conectados con 5.3</h2>
+  <div class="line"></div>
+  <p>Muchas de las áreas tematicas de la Extension NS se conectan con los 17 ODS, ya que las nuevas tecnologías pueden usarse para apoyar y acelerar su logro. Los mas directamente vinculados con 5.3 son:</p>
+
+  <div class="ods-grid">
+    <div class="ods-item">
+      <div class="ods-num">7</div>
+      <div class="ods-label">Energía asequible y limpia</div>
+      <div class="ods-tech">Smart grid, IoT, ML para renovables</div>
+    </div>
+    <div class="ods-item">
+      <div class="ods-num">11</div>
+      <div class="ods-label">Ciudades y comunidades sostenibles</div>
+      <div class="ods-tech">Ciudades inteligentes, transporte conectado</div>
+    </div>
+    <div class="ods-item">
+      <div class="ods-num">12</div>
+      <div class="ods-label">Producción y consumo responsables</div>
+      <div class="ods-tech">Economia circular, impresion 3D, RFID</div>
+    </div>
+    <div class="ods-item">
+      <div class="ods-num">13</div>
+      <div class="ods-label">Acción por el clima</div>
+      <div class="ods-tech">Modelos climaticos IA, satélites, Blockchain</div>
+    </div>
+    <div class="ods-item">
+      <div class="ods-num">14</div>
+      <div class="ods-label">Vida submarina</div>
+      <div class="ods-tech">Sensores oceánicos, drones, Big Data</div>
+    </div>
+    <div class="ods-item">
+      <div class="ods-num">15</div>
+      <div class="ods-label">Vida de ecosistemas terrestres</div>
+      <div class="ods-tech">Drones de reforestación, imágenes satelitales</div>
+    </div>
+  </div>
+
+  <div class="al al-green">
+    <strong>Actividad IB:</strong> Para cada uno de los 17 ODS, el IB pide identificar como las tecnologias digitales pueden impulsar el progreso HACIA el objetivo y como pueden contribuir negativamente al incumplimiento del mismo. Este doble análisis es exactamente la estructura argumentativa de una respuesta de 10–12 puntos en Sección B.
+  </div>
+</section>
+
+<!-- ── INTERVENCIÓNES ── -->
+<section class="sec" id="intervenciones">
+  <span class="sec-eye">Ejemplos prescritos del IB + evaluación con 6 criterios</span>
+  <h2>Intervenciones para indagación prolongada</h2>
+  <div class="line"></div>
+
+  <!-- Intervención 1 -->
+  <div class="int-card">
+    <div class="int-hdr" style="background:var(--teal-bg);">
+      <span class="int-tag" style="background:var(--teal);color:#fff;">5.3A · Clima</span>
+      <span class="int-title">Transmisión en directo de plataformas de hielo (organización científica)</span>
+      <span class="badge b-g">Ejemplo IB prescrito</span>
+    </div>
+    <div class="int-body">
+      <p>Una organización científica retransmite en directo la actividad de las plataformas de hielo polares para concienciar sobre el cambio climático — usando cámara web, datos de temperatura en tiempo real y redes sociales para llegar a audiencias globales.</p>
+      <div class="criteria-row">
+        <div class="cr-item" style="background:var(--green-bg);border-color:var(--green-b);">
+          <strong>Equidad</strong>Accesible globalmente a cualquier persona con conexión a Internet. Idioma puede ser una barrera.
+        </div>
+        <div class="cr-item" style="background:var(--red-bg);border-color:var(--red-b);">
+          <strong>Aceptabilidad</strong>Alta entre público ambientalista; posible escepticismo de quienes no confian en la ciencia climatica.
+        </div>
+        <div class="cr-item" style="background:var(--teal-bg);border-color:var(--teal-b);">
+          <strong>Costo</strong>Bajo costo relativo (cámara, servidor de streaming). Requiere mantenimiento en zonas remotas y heladas.
+        </div>
+        <div class="cr-item" style="background:var(--blue-bg);border-color:var(--blue-b);">
+          <strong>Viabilidad</strong>Técnicamente viable; barrera: conectividad en zonas polares remotas. Depende de organización sostenida.
+        </div>
+        <div class="cr-item" style="background:var(--purple-bg);border-color:var(--purple-b);">
+          <strong>Innovación</strong>Adaptación de transmisión en vivo a educación climática. Potencial de gamificación y realidad virtual.
+        </div>
+        <div class="cr-item" style="background:var(--gold-bg);border-color:var(--gold-b);">
+          <strong>Ética</strong>¿La concienciación sin llamada a la acción concreta es suficiente? Riesgo de "pornografía del desastre".
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Intervención 2 -->
+  <div class="int-card">
+    <div class="int-hdr" style="background:var(--green-bg);">
+      <span class="int-tag" style="background:var(--green);color:#fff;">5.3B · Recursos</span>
+      <span class="int-title">Servicio de impresión 3D con plástico reciclado (empresa)</span>
+      <span class="badge b-g">Ejemplo IB prescrito</span>
+    </div>
+    <div class="int-body">
+      <p>Una empresa ofrece un servicio de impresión en 3D para que los clientes diseñen artículos del hogar utilizando plástico reciclado — convirtiendo residuos plásticos en objetos útiles y reduciendo la demanda de plástico nuevo y fabricacion convencional.</p>
+      <div class="criteria-row">
+        <div class="cr-item" style="background:var(--green-bg);border-color:var(--green-b);">
+          <strong>Equidad</strong>Democratiza la fabricacion personalizada. Acceso limitado a quienes tienen conocimientos de diseño 3D.
+        </div>
+        <div class="cr-item" style="background:var(--red-bg);border-color:var(--red-b);">
+          <strong>Aceptabilidad</strong>Alta entre consumidores conscientes. El mercado masivo puede preferir productos convencionales mas baratos.
+        </div>
+        <div class="cr-item" style="background:var(--teal-bg);border-color:var(--teal-b);">
+          <strong>Costo</strong>Mayor costo que manufactura en masa. Reducción de costos de transporte y stock. Precio premium posible.
+        </div>
+        <div class="cr-item" style="background:var(--blue-bg);border-color:var(--blue-b);">
+          <strong>Viabilidad</strong>Técnicamente madura. Escala limitada: viable para nichos, no para sustitucion masiva del plástico virgen aún.
+        </div>
+        <div class="cr-item" style="background:var(--purple-bg);border-color:var(--purple-b);">
+          <strong>Innovación</strong>Combinacion innovadora de fabricación circular + manufactura digital bajo demanda. Modelo replicable localmente.
+        </div>
+        <div class="cr-item" style="background:var(--gold-bg);border-color:var(--gold-b);">
+          <strong>Ética</strong>¿El plástico reciclado es siempre de menor calidad? ¿Se informa correctamente al consumidor sobre el origen del material?
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Intervención 3 -->
+  <div class="int-card">
+    <div class="int-hdr" style="background:var(--gold-bg);">
+      <span class="int-tag" style="background:var(--gold);color:#fff;">5.3C · Residuos</span>
+      <span class="int-title">App de realidad aumentada para visualizar impacto de residuos (artista digital)</span>
+      <span class="badge b-t">Ejemplo IB prescrito</span>
+    </div>
+    <div class="int-body">
+      <p>Un artista digital promueve los principios de la economia circular con una aplicación de realidad aumentada que visualiza las repercusiones en materia de residuos de las compras habituales — mostrando en tiempo real el "costo invisible" ambiental de cada producto.</p>
+      <div class="criteria-row">
+        <div class="cr-item" style="background:var(--green-bg);border-color:var(--green-b);">
+          <strong>Equidad</strong>Requiere smartphone con cámara de RA. Excluye usuarios sin dispositivos compatibles o en paises con baja penetracion tecnológica.
+        </div>
+        <div class="cr-item" style="background:var(--red-bg);border-color:var(--red-b);">
+          <strong>Aceptabilidad</strong>Alta entre jovenes y consumidores conscientes. Puede percibirse como intrusiva o moralizante por otros usuarios.
+        </div>
+        <div class="cr-item" style="background:var(--teal-bg);border-color:var(--teal-b);">
+          <strong>Costo</strong>Desarrollo de RA relativamente costoso. Gratuita para el usuario final puede maximizar adopción.
+        </div>
+        <div class="cr-item" style="background:var(--blue-bg);border-color:var(--blue-b);">
+          <strong>Viabilidad</strong>Técnicamente viable; desafío: mantener base de datos actualizada con impacto ambiental real de productos.
+        </div>
+        <div class="cr-item" style="background:var(--purple-bg);border-color:var(--purple-b);">
+          <strong>Innovación</strong>Muy innovadora: hace visible lo invisible. Combina arte, tecnología y activismo ambiental de forma única.
+        </div>
+        <div class="cr-item" style="background:var(--gold-bg);border-color:var(--gold-b);">
+          <strong>Ética</strong>¿Quién verifica los datos de impacto? Las empresas pueden presionar para que se muestren cifras favorables.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRACTICA ── -->
+<section class="sec" id="práctica">
+  <span class="sec-eye">Evaluación externa</span>
+  <h2>Preguntas de práctica — Sección B</h2>
+  <div class="line"></div>
+
+  <div class="pq">
+    <span class="pq-label">5.3A · Vigilancia climática · [12 pts]</span>
+    <p>Las innovaciones digitales estan haciendo avanzar la vigilancia del clima en todo el mundo. Utilizando un ejemplo del mundo real, discuta el impacto de este tipo de innovación digital para ayudar a hacer frente al cambio climático.</p>
+  </div>
+  <div class="pq">
+    <span class="pq-label">5.3B/C · Residuos electrónicos · Markscheme HL M24 Pregunta 4 · [12 pts]</span>
+    <p>Una intervención para abordar los residuos electrónicos es un servicio en el que el hardware informático y los dispositivos móviles se llevan a una ubicación central y se donan a colegios locales o se envian a otro pais para reciclarse. Se afirma que este servicio reducirá la cantidad y el impacto de los residuos electrónicos. ¿En que medida esta de acuerdo con esta afirmacion?</p>
+  </div>
+  <div class="pq">
+    <span class="pq-label">5.3B · Economáa circular · [12 pts]</span>
+    <p>Una empresa ofrece un servicio de impresion en 3D usando plástico reciclado. Se afirma que este tipo de intervención contribuirá significativamente a la economía circular y reducira la producción de residuos. Evalúe esta afirmacion.</p>
+  </div>
+  <div class="pq">
+    <span class="pq-label">5.3A · Concienciación · [12 pts]</span>
+    <p>Una organización científica transmite en directo la actividad de plataformas de hielo para concienciar sobre el cambio climático. Se afirma que esta intervención aumentará la acción climática ciudadana. ¿En qué medida esta de acuerdo con esta afirmacion?</p>
+  </div>
+
+  <div class="al al-green">
+    <strong>Consejo para respuestas de 10–12 puntos en este tema:</strong> El tema 5.3 tiene una paradoja central que el IB valora: la misma tecnología digital que usamos para monitorear y resolver problemas ambientales (IA, IoT, Big Data) también contribuye a esos problemas (e-waste, consumo energético de centros de datos, extracción de minerales). Una conclusión evaluativa solida reconoce esta tensión y propone condiciones bajo las cuales la tecnología puede ser parte de la solución.
+  </div>
+</section>
+
+<!-- ── INDAGACIÓN ── -->
+<section class="sec" id="indagación">
+  <span class="sec-eye">Indagación ampliada NS</span>
+  <h2>Guia para la indagación prolongada</h2>
+  <div class="line"></div>
+
+  <h3>Tabla de desafíos e intervenciones por área (Capítulo 6 IB)</h3>
+  <table class="tbl">
+    <thead><tr><th>Área</th><th>Desafío ejemplo</th><th>Intervención ejemplo</th></tr></thead>
+    <tbody>
+      <tr><td>5.3A — Global</td><td>Modelos climáticos insuficientes para predecir eventos extremos locales</td><td>IA/ML para modelos climáticos de mayor precisión; imagenes satelitales; Big Data climatico</td></tr>
+      <tr><td>5.3A — Local</td><td>Falta de datos locales para tomar acción climática regional específica</td><td>IoT para monitoreo local; aplicaciones de monitoreo de energia; redes de sensores comunitarios</td></tr>
+      <tr><td>5.3B — Consumo</td><td>Consumo energético no controlado en hogares y empresas</td><td>Apps de monitoreo de energía; electrodomésticos inteligentes; medicion inteligente en red electrica</td></tr>
+      <tr><td>5.3B — Producción</td><td>Modelo de producción lineal genera residuos masivos de manufactura</td><td>Impresión 3D con materiales reciclados; políticas de recompra corporativa; diseño para desmontaje</td></tr>
+      <tr><td>5.3C — Seguimiento</td><td>Contaminación de agua y aire sin datos en tiempo real para intervención rápida</td><td>Sensores IoT en rios y calidad del aire; RFID en contenedores; sistemas GPS en flotas de recolección</td></tr>
+      <tr><td>5.3C — Prevención</td><td>Comportamiento de consumidores genera residuos evitables</td><td>Apps de información de reciclaje; RA para visualizar impacto; juegos educativos de gestión de residuos</td></tr>
+      <tr><td>5.3C — Reducción</td><td>E-waste acumulado supera capacidad de procesamiento responsable</td><td>Servicios ecoATM; blockchain para rastreo de ciclo de vida; plataformas de comercio de e-waste</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Checklist de indagación — Desarrollo Sostenible</h3>
+  <ul class="cl">
+    <li>Identifica el desafío específico dentro de 5.3A, 5.3B o 5.3C con impactos reales documentados en personas y ecosistemas</li>
+    <li>Selecciona una intervención digital que involucre tecnología específica (no solo política general)</li>
+    <li>Conecta con las 3C: ¿que Concepto (Sistemas, Cambio, Valores)? ¿que Contenido (IoT, IA, Blockchain)? ¿en que Contexto (ambiental, económico)?</li>
+    <li>Analice la paradoja: ¿la tecnología seleccionada también contribuye al problema que busca resolver?</li>
+    <li>Evalúa usando los 6 criterios; en este tema Costo ambiental e Innovación son especialmente relevantes</li>
+    <li>Incluye datos cuantitativos (toneladas de e-waste, % de reducción de emisiones, % de ahorro energético)</li>
+    <li>Conecta con al menos uno de los 17 ODS de la ONU</li>
+    <li>Concluye con recomendaciones que aborden tanto la solución tecnológica como el cambio de política o comportamiento necesario</li>
+  </ul>
+
+  <div class="al al-green">
+    <strong>Nota del IB (Capítulo 6):</strong> "Debes considerar ejemplos e intervenciones reales de su propio entorno." Para Costa Rica, hay intervenciones relevantes en energia renovable (98% de generación con fuentes limpias), biodiversidad monitoreada con sensores, y programas de gestión de residuos electrónicos — todos directamente aplicables a 5.3.
+  </div>
+</section>
+
+</div>
+<footer>Sociedad Digital · Nivel Superior · 5.3 Desarrollo Sostenible &nbsp;|&nbsp; Basado en Capítulos 5 y 6 del libro de texto IB y guia del programa</footer>
+
+<script>
+function st(id,btn){
+  const parent=btn.closest('.sec');
+  parent.querySelectorAll('.tp').forEach(p=>p.classList.remove('on'));
+  parent.querySelectorAll('.tb').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>
