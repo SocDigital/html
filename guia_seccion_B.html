@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia Sección B — Sociedad Digital NS</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f2ed;--surface:#fff;--ink:#1c1c28;--ink2:#3d3d52;--muted:#7a7a8e;--border:#dedad3;--red:#b83232;--blue:#1f5c99;--green:#1a6640;--amber:#b07820;--purple:#5e3a8a;--red-bg:#fdf0f0;--blue-bg:#eef4fb;--green-bg:#eef7f1;--amber-bg:#fdf6e8;--purple-bg:#f5f0fa;--red-b:#f0b8b8;--blue-b:#b8d4f0;--green-b:#a8d8b8;--amber-b:#e8c870;--purple-b:#cdb8e8;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:15px;}
+.site-header{background:var(--ink);color:#fff;padding:3.5rem 2rem 3rem;text-align:center;position:relative;}
+.site-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--red),var(--amber),var(--blue),var(--green));}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:#e8b84a;margin-bottom:1rem;display:block;}
+.site-header h1{font-family:'DM Serif Display',serif;font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.1;margin-bottom:.5rem;}
+.site-header h1 em{font-style:italic;color:#e8b84a;}
+.site-header .sub{color:#9090a8;font-size:.95rem;font-weight:300;}
+.sticky-nav{position:sticky;top:0;z-index:200;background:var(--ink);display:flex;justify-content:center;flex-wrap:wrap;padding:0 1rem;border-bottom:1px solid rgba(255,255,255,.08);}
+.sticky-nav a{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:#8888a0;text-decoration:none;padding:.8rem 1rem;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;}
+.sticky-nav a:hover{color:#e8b84a;border-bottom-color:#e8b84a;}
+.page-body{max-width:900px;margin:0 auto;padding:0 1.5rem 5rem;}
+.section{margin-top:5rem;}
+.sec-eye{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:.4rem;display:block;}
+.section>h2{font-family:'DM Serif Display',serif;font-size:2rem;line-height:1.2;margin-bottom:.4rem;}
+.divider{width:3rem;height:3px;background:var(--red);border-radius:2px;margin-bottom:1.5rem;}
+h3{font-family:'DM Serif Display',serif;font-size:1.25rem;color:var(--blue);margin:2.5rem 0 .75rem;}
+h4{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:1.5rem 0 .5rem;}
+p{margin-bottom:.85rem;color:var(--ink2);}p:last-child{margin-bottom:0;}
+.alert{padding:1rem 1.3rem;border-radius:6px;border-left:4px solid;margin:1.5rem 0;font-size:.93rem;}
+.alert-blue{background:var(--blue-bg);border-color:var(--blue);color:var(--ink2);}
+.alert-amber{background:var(--amber-bg);border-color:var(--amber);color:var(--ink2);}
+.alert-green{background:var(--green-bg);border-color:var(--green);color:var(--ink2);}
+.alert-red{background:var(--red-bg);border-color:var(--red);color:var(--ink2);}
+.alert strong{color:var(--ink);}
+.examiner-box{background:var(--ink);color:#e0e0ee;border-radius:8px;padding:1.4rem 1.6rem;margin:1.5rem 0;}
+.exam-label{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:#e8b84a;margin-bottom:.75rem;display:block;}
+.examiner-box ul{padding-left:1.3rem;}
+.examiner-box li{margin-bottom:.45rem;color:#c8c8dc;font-size:.93rem;}
+.examiner-box li strong{color:#e8b84a;}
+.three-c{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.5rem 0;}
+.c-card{border-radius:8px;padding:1.2rem;border:1px solid;text-align:center;}
+.c-card .c-letter{font-family:'DM Serif Display',serif;font-size:2.8rem;line-height:1;margin-bottom:.4rem;}
+.c-card h4{margin:.3rem 0 .5rem;text-align:center;}
+.c-card p{font-size:.83rem;margin:0;}
+.c-conceptos{background:var(--blue-bg);border-color:var(--blue-b);}
+.c-conceptos .c-letter,.c-conceptos h4{color:var(--blue);}
+.c-contenido{background:var(--green-bg);border-color:var(--green-b);}
+.c-contenido .c-letter,.c-contenido h4{color:var(--green);}
+.c-contextos{background:var(--amber-bg);border-color:var(--amber-b);}
+.c-contextos .c-letter,.c-contextos h4{color:var(--amber);}
+.criteria-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.85rem;margin:1.5rem 0;}
+.crit-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem;border-top:3px solid var(--blue);}
+.crit-tag{font-family:'JetBrains Mono',monospace;font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:.3rem;}
+.crit-q{font-style:italic;font-size:.85rem;color:var(--muted);margin-bottom:.4rem;}
+.crit-card p{font-size:.85rem;margin:0;}
+.flow{margin:1.5rem 0;}
+.flow-item{display:flex;gap:1rem;margin-bottom:.6rem;align-items:stretch;}
+.flow-connector{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:36px;}
+.flow-dot{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:1rem;font-weight:700;flex-shrink:0;color:#fff;}
+.flow-line{width:2px;flex:1;background:var(--border);margin:3px 0;}
+.flow-content{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:.9rem 1.1rem;flex:1;margin-bottom:0;}
+.flow-content h4{margin-top:0;margin-bottom:.35rem;}
+.flow-content p{font-size:.88rem;margin:0;}
+.dot-intro{background:var(--ink);}.dot-pro{background:var(--green);}.dot-con{background:var(--red);}.dot-eval{background:var(--purple);}
+.border-intro{border-left:3px solid var(--ink);}.border-pro{border-left:3px solid var(--green);}.border-con{border-left:3px solid var(--red);}.border-eval{border-left:3px solid var(--purple);}
+.tab-row{display:flex;flex-wrap:wrap;gap:0;border-bottom:2px solid var(--border);margin-bottom:1.5rem;}
+.tab-btn{background:none;border:none;padding:.7rem 1.2rem;font-family:'DM Sans',sans-serif;font-size:.88rem;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;font-weight:500;}
+.tab-btn:hover{color:var(--blue);}.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue);}
+.tab-pane{display:none;}.tab-pane.active{display:block;}
+.ex-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.06);margin-bottom:1.5rem;}
+.ex-card-header{background:var(--ink);color:#e0e0ee;padding:.85rem 1.4rem;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;}
+.ex-tag{background:#e8b84a;color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .55rem;border-radius:3px;font-weight:700;}
+.ex-card-header .etitle{font-size:.9rem;font-weight:500;}
+.ex-card-body{padding:1.5rem;}
+.stimulus{background:var(--amber-bg);border-left:3px solid var(--amber);padding:.9rem 1.1rem;border-radius:0 5px 5px 0;font-style:italic;font-size:.92rem;color:var(--ink2);margin-bottom:1.5rem;}
+.para-block{border-radius:6px;padding:1.1rem 1.3rem;margin-bottom:1rem;border:1px solid;position:relative;}
+.para-pill{position:absolute;top:-.55rem;left:1rem;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:.15rem .55rem;border-radius:20px;font-weight:700;}
+.para-block p{margin:0;font-size:.91rem;line-height:1.7;}
+.pb-intro{background:#f5f5fa;border-color:#d0d0e0;}
+.pb-intro .para-pill{background:var(--ink);color:#fff;}
+.pb-pro{background:var(--green-bg);border-color:var(--green-b);}
+.pb-pro .para-pill{background:var(--green);color:#fff;}
+.pb-con{background:var(--red-bg);border-color:var(--red-b);}
+.pb-con .para-pill{background:var(--red);color:#fff;}
+.pb-eval{background:var(--purple-bg);border-color:var(--purple-b);}
+.pb-eval .para-pill{background:var(--purple);color:#fff;}
+.mk3c{display:inline-block;background:var(--blue);color:#fff;font-family:'JetBrains Mono',monospace;font-size:.58rem;padding:.1rem .4rem;border-radius:3px;margin:0 .1rem;vertical-align:middle;}
+.mkcon{display:inline-block;background:var(--ink);color:#e8b84a;font-family:'JetBrains Mono',monospace;font-size:.58rem;padding:.1rem .4rem;border-radius:3px;margin:0 .1rem;vertical-align:middle;}
+.mkcrit{display:inline-block;background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-b);font-family:'JetBrains Mono',monospace;font-size:.58rem;padding:.1rem .4rem;border-radius:3px;margin:0 .1rem;vertical-align:middle;}
+.anno-key{display:flex;flex-wrap:wrap;gap:.75rem;margin:.5rem 0 1.5rem;padding:.85rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:6px;}
+.anno-key-item{display:flex;align-items:center;gap:.4rem;font-size:.8rem;color:var(--ink2);}
+.anatomy{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:1.5rem 0;}
+.anatomy-row{display:flex;align-items:stretch;border-bottom:1px solid var(--border);}
+.anatomy-row:last-child{border-bottom:none;}
+.anatomy-label{width:130px;flex-shrink:0;padding:.85rem 1rem;font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;display:flex;align-items:center;border-right:1px solid var(--border);}
+.anatomy-content{padding:.85rem 1.1rem;flex:1;font-size:.88rem;display:flex;align-items:center;}
+.row-affirm .anatomy-label{background:var(--green-bg);color:var(--green);}
+.row-explain .anatomy-label{background:var(--blue-bg);color:var(--blue);}
+.row-link .anatomy-label{background:var(--amber-bg);color:var(--amber);}
+.row-concept .anatomy-label{background:#f5f0fa;color:var(--purple);}
+.rubric{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.88rem;}
+.rubric thead th{background:var(--ink);color:#e8b84a;font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:.75rem 1rem;text-align:left;}
+.rubric td{padding:.85rem 1rem;border-bottom:1px solid var(--border);vertical-align:top;}
+.rubric tr:nth-child(even) td{background:#f8f6f2;}
+.sbadge{font-family:'DM Serif Display',serif;font-size:1.1rem;font-weight:700;display:inline-block;padding:.15rem .7rem;border-radius:20px;white-space:nowrap;}
+.s0{background:#eee;color:var(--muted);}
+.s13{background:var(--red-bg);color:var(--red);border:1px solid var(--red-b);}
+.s46{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-b);}
+.s79{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-b);}
+.s1012{background:var(--green-bg);color:var(--green);border:1px solid var(--green-b);}
+.rubric ul{padding-left:1.2rem;margin:0;}.rubric li{margin-bottom:.3rem;}.rubric strong{color:var(--ink);}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.2rem 0;}
+.col-box{padding:1.1rem 1.2rem;border-radius:7px;font-size:.87rem;border:1px solid;}
+.col-box h4{margin-top:0;margin-bottom:.6rem;}
+.col-box ul{padding-left:1.2rem;}.col-box li{margin-bottom:.4rem;}
+.col-green{background:var(--green-bg);border-color:var(--green-b);}
+.col-green h4{color:var(--green);}
+.col-red{background:var(--red-bg);border-color:var(--red-b);}
+.col-red h4{color:var(--red);}
+.check-group{margin:1.2rem 0 1.8rem;}
+.check-group h4{margin-bottom:.5rem;}
+.check-list{list-style:none;}
+.check-list li{display:flex;align-items:flex-start;gap:.6rem;padding:.5rem .6rem;border-radius:4px;font-size:.88rem;color:var(--ink2);border-bottom:1px solid var(--border);}
+.check-list li:last-child{border-bottom:none;}
+.check-list li::before{content:'□';font-size:1rem;color:var(--blue);flex-shrink:0;line-height:1.4;}
+footer{text-align:center;padding:2.5rem 1rem;border-top:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:5rem;}
+@media(max-width:620px){.three-c{grid-template-columns:1fr;}.two-col{grid-template-columns:1fr;}.criteria-grid{grid-template-columns:1fr;}.anatomy-label{width:90px;font-size:.58rem;}.sticky-nav a{padding:.65rem .7rem;font-size:.58rem;}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <span class="eyebrow">Sociedad Digital · Nivel Superior · Prueba 1</span>
+  <h1>Responder la <em>Sección B</em></h1>
+  <p class="sub">Guia estrategica basada en recomendaciones oficiales de examinadores del IB</p>
+</header>
+
+<nav class="sticky-nav">
+  <a href="#que-es">Que es</a>
+  <a href="#examinadores">Examinadores</a>
+  <a href="#3c">Las 3C</a>
+  <a href="#criterios">Criterios</a>
+  <a href="#estructura">Estructura</a>
+  <a href="#anatomia">Anatomia</a>
+  <a href="#ejemplos">Ejemplos</a>
+  <a href="#rubrica">Rubrica</a>
+  <a href="#checklist">Checklist</a>
+</nav>
+
+<div class="page-body">
+
+<section class="section" id="que-es">
+  <span class="sec-eye">01 · Punto de partida</span>
+  <h2>Que es la Sección B</h2>
+  <div class="divider"></div>
+  <p>La Sección B es la pregunta de <strong>mayor exigencia analítica</strong> de la Prueba 1 NS. A diferencia de la Sección A, donde se identifican y explican conceptos, aqui el IB pide <em>evaluar</em> una intervención digital frente a un desafio global usando argumentos a favor, contraargumentos y una conclusión evaluativa propia.</p>
+  <div class="two-col">
+    <div class="col-box col-green">
+      <h4>Formato</h4>
+      <ul>
+        <li>Contesta <strong>una</strong> pregunta</li>
+        <li>Vale <strong>[12 puntos]</strong></li>
+        <li>Tiempo recomendado: <strong>~30 min</strong></li>
+        <li>Respuesta en <strong>parrafos continuos</strong></li>
+      </ul>
+    </div>
+    <div class="col-box col-red">
+      <h4>Lo que el IB evalúa</h4>
+      <ul>
+        <li>Conocimiento de la materia (AO3)</li>
+        <li>Argumentos <em>y</em> contraargumentos</li>
+        <li>Conexión explicita con las <strong>3C</strong></li>
+        <li>Conclusión evaluativa — no resumen</li>
+      </ul>
+    </div>
+  </div>
+  <div class="alert alert-blue">
+    <strong>Los tres verbos de instruccion de la Sección B significan lo mismo:</strong> "Evalúe…", "¿En qué medida está de acuerdo con…?", "Discuta las ventajas y desventajas de…" — todos exigen ambos lados del argumento mas una posicion evaluativa sustentada.
+  </div>
+</section>
+
+<section class="section" id="examinadores">
+  <span class="sec-eye">02 · Voz del examinador</span>
+  <h2>Lo que dicen los examinadores del IB</h2>
+  <div class="divider"></div>
+  <p>Estas son las recomendaciones directas de los examinadores del IB para la Sección B. Son el mapa mas preciso de lo que separa un 6 de un 12.</p>
+  <div class="examiner-box">
+    <span class="exam-label">Recomendaciones oficiales de examinadores IB — Sección B / AO3</span>
+    <ul>
+      <li>Usar <strong>parrafos completos</strong> para estructurar argumentos a favor, argumentos en contra, análisis y conclusión evaluativa — no listas de puntos sueltos.</li>
+      <li>La <strong>introducción</strong> debe sintetizar los requisitos de la pregunta <em>y</em> anticipar como la respuesta abordara los argumentos a favor y en contra con información adicional. <strong>No es un resumen ni una repeticion de la pregunta.</strong></li>
+      <li>Procurar siempre establecer <strong>conexiones con las 3C</strong> (conceptos, contenido y contextos) y justificar los argumentos a través de ellas.</li>
+      <li>Demostrar <strong>conocimiento de la materia</strong> del curso.</li>
+      <li>Utilizar <strong>material de referencia</strong> y <strong>ejemplos del mundo real</strong> cuando proceda.</li>
+      <li>La <strong>conclusión debe ser evaluativa</strong> — no un simple resumen. Debe incluir una referencia a <strong>situaciones similares</strong> o implicaciones mas amplias.</li>
+      <li>Evaluar los argumentos y <strong>sintetizarlos</strong> en la conclusión (no listarlos de nuevo).</li>
+    </ul>
+  </div>
+  <div class="alert alert-amber">
+    <strong>Error mas frecuente según examinadores:</strong> Respuestas que listan puntos sin desarrollarlos en parrafos, y conclusiones que solo resumen lo dicho sin tomar ni justificar una posicion.
+  </div>
+</section>
+
+<section class="section" id="3c">
+  <span class="sec-eye">03 · Marco del curso</span>
+  <h2>Las 3C: el marco que conecta todo</h2>
+  <div class="divider"></div>
+  <p>Las <strong>3C</strong> son el diagrama central del curso de Sociedad Digital. Los examinadores esperan que las uses explicitamente para justificar argumentos. Cada punto se fortalece cuando anclas <em>que concepto</em> esta en juego, <em>que tecnología digital</em> interviene y <em>en que contexto real</em> ocurre.</p>
+  <div class="three-c">
+    <div class="c-card c-conceptos">
+      <div class="c-letter">C</div>
+      <h4>Conceptos</h4>
+      <p>Grandes temas transversales: Cambio, Expresión, Identidad, Poder, Espacio, Sistemas, Valores y ética.</p>
+    </div>
+    <div class="c-card c-contenido">
+      <div class="c-letter">C</div>
+      <h4>Contenido</h4>
+      <p>Tecnologias digitales: Datos, Algoritmos, Dispositivos, Redes, Medios, IA, Robótica y tecnologias autonomas.</p>
+    </div>
+    <div class="c-card c-contextos">
+      <div class="c-letter">C</div>
+      <h4>Contextos</h4>
+      <p>Ambitos reales: Cultural, Económico, Ambiental, Salud, Conocimiento humano, Político, Social.</p>
+    </div>
+  </div>
+  <div class="alert alert-green">
+    <strong>Como usar las 3C en tu respuesta:</strong> No basta con nombrarlas. Debes mostrar la <em>conexión</em>: "Esta intervención utiliza [tecnología — Contenido] para abordar [desafio] en el contexto [Contexto], lo cual tiene implicaciones para [Concepto] porque…"
+  </div>
+  <h3>Ejemplo de conexión 3C en un argumento</h3>
+  <div class="anatomy">
+    <div class="anatomy-row row-affirm">
+      <div class="anatomy-label">Afirmacion</div>
+      <div class="anatomy-content">"Los exoesqueletos pueden reducir los costos del sistema de salud…"</div>
+    </div>
+    <div class="anatomy-row row-explain">
+      <div class="anatomy-label">Contenido</div>
+      <div class="anatomy-content">…al integrar sensores, motores y algoritmos de IA que predicen el movimiento del usuario, reduciendo caidas — la principal causa de hospitalizacion en adultos mayores.</div>
+    </div>
+    <div class="anatomy-row row-link">
+      <div class="anatomy-label">Contexto</div>
+      <div class="anatomy-content">En contextos de salud pública con presupuestos limitados (contexto económico y de salud), esto permitiria redirigir recursos hacia otras intervenciones preventivas.</div>
+    </div>
+    <div class="anatomy-row row-concept">
+      <div class="anatomy-label">Concepto</div>
+      <div class="anatomy-content">Esto conecta con el concepto de <em>sistemas</em>: la tecnología no opera en aislamiento, sino dentro de un ecosistema de salud, economia y política que determina quien puede acceder y con que consecuencias.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="criterios">
+  <span class="sec-eye">04 · Herramientas de evaluación</span>
+  <h2>Los 6 criterios de evaluación del IB</h2>
+  <div class="divider"></div>
+  <p>El IB usa seis criterios específicos para evaluar intervenciones (Capítulo 6). Usarlos por nombre en tu respuesta es una senal directa de dominio del contenido. <strong>Muchos se superponen</strong>: cuando menciones uno, conecta con otro.</p>
+  <div class="criteria-grid">
+    <div class="crit-card">
+      <div class="crit-tag">Equidad</div>
+      <div class="crit-q">¿Beneficia a todos por igual?</div>
+      <p>¿Aborda necesidades de personas marginadas? ¿Crea o reduce brechas de acceso?</p>
+    </div>
+    <div class="crit-card">
+      <div class="crit-tag">Aceptabilidad</div>
+      <div class="crit-q">¿Las personas la aceptan?</div>
+      <p>¿Genera confianza? ¿Hay resistencia cultural, política o social? ¿Quien responde si falla?</p>
+    </div>
+    <div class="crit-card">
+      <div class="crit-tag">Costo</div>
+      <div class="crit-q">¿Cuanto cuesta en todos los sentidos?</div>
+      <p>No solo dinero: costos sociales, culturales, ambientales, y para comunidades afectadas.</p>
+    </div>
+    <div class="crit-card">
+      <div class="crit-tag">Viabilidad</div>
+      <div class="crit-q">¿Es posible implementarla?</div>
+      <p>¿Es técnica, social y políticamente factible? ¿Que barreras existen en la práctica?</p>
+    </div>
+    <div class="crit-card">
+      <div class="crit-tag">Innovación</div>
+      <div class="crit-q">¿Es un enfoque nuevo?</div>
+      <p>¿Es transformacional, adaptativa, evolutiva? ¿Se ha intentado algo similar antes?</p>
+    </div>
+    <div class="crit-card">
+      <div class="crit-tag">Ética</div>
+      <div class="crit-q">¿Puede causar daño?</div>
+      <p>¿Quien determina lo correcto? ¿Hay conflictos entre derechos, valores y consecuencias?</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="estructura">
+  <span class="sec-eye">05 · Arquitectura de la respuesta</span>
+  <h2>La estructura de una respuesta de 10–12 puntos</h2>
+  <div class="divider"></div>
+  <p>El IB evalúa tu <strong>proceso de pensamiento</strong>. La estructura en parrafos es obligatoria: cada parrafo tiene una funcion específica.</p>
+  <div class="flow">
+    <div class="flow-item">
+      <div class="flow-connector"><div class="flow-dot dot-intro">I</div><div class="flow-line"></div></div>
+      <div class="flow-content border-intro">
+        <h4>Parrafo 1 — Introducción analítica</h4>
+        <p>Sintetiza el <strong>desafio global</strong> y la <strong>intervención digital</strong>. Anticipa como abordas ambos lados. <em>No repitas la pregunta.</em> Muestra desde el inicio que entiendes la complejidad. Conecta con la tecnología (Contenido) y el contexto real.</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-connector"><div class="flow-dot dot-pro">A</div><div class="flow-line"></div></div>
+      <div class="flow-content border-pro">
+        <h4>Parrafos 2–3 — Argumentos a favor (min. 2)</h4>
+        <p><strong>Afirma → explica el mecanismo → conecta con las 3C → nombra criterio o concepto IB.</strong> Usa conectores de análisis: "esto implica que…", "como resultado…", "debido a…", "por tanto…". Incluye un ejemplo del mundo real si es posible.</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-connector"><div class="flow-dot dot-con">C</div><div class="flow-line"></div></div>
+      <div class="flow-content border-con">
+        <h4>Parrafos 4–5 — Contraargumentos (min. 2)</h4>
+        <p>Usa transiciones: <em>"Sin embargo…", "No obstante…", "Por otro lado…"</em> Los contraargumentos deben ser <strong>igual de solidos</strong> que los argumentos. Conectar un contraargumento con un argumento previo muestra análisis de tensión — esto es lo que el IB llama "argumento equilibrado".</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-connector"><div class="flow-dot dot-eval">E</div></div>
+      <div class="flow-content border-eval">
+        <h4>Parrafo 6 — Conclusión evaluativa</h4>
+        <p>Toma una <strong>posicion justificada</strong>. Usa: <em>"Sopesando ambos lados…", "En mi opinion…", "Aunque…, la evidencia sugiere que…"</em> Incluye una <strong>referencia a situaciones similares</strong> (otra intervención, otro pais, un caso paralelo) y una recomendación realista para el futuro. No listes argumentos otra vez.</p>
+      </div>
+    </div>
+  </div>
+  <div class="alert alert-red">
+    <strong>Lo que NO es una conclusión evaluativa:</strong> "En conclusión, el voto por Internet tiene ventajas y desventajas. Por un lado… por otro lado…" — eso es repetir. La conclusión debe sintetizar y juzgar, no listar de nuevo.
+  </div>
+</section>
+
+<section class="section" id="anatomia">
+  <span class="sec-eye">06 · Técnica de escritura</span>
+  <h2>Anatomia de un parrafo analítico</h2>
+  <div class="divider"></div>
+  <p>Cada parrafo de argumentos o contraargumentos debe seguir esta arquitectura interna para alcanzar el nivel de análisis que exige el IB:</p>
+  <div class="anatomy">
+    <div class="anatomy-row row-affirm">
+      <div class="anatomy-label">1. Afirmar</div>
+      <div class="anatomy-content">Enuncia claramente el punto principal del parrafo en una oracion directa.</div>
+    </div>
+    <div class="anatomy-row row-explain">
+      <div class="anatomy-label">2. Explicar</div>
+      <div class="anatomy-content">Explica el <em>mecanismo</em>: como funciona la tecnología, por que produce ese efecto. Usa "porque", "ya que", "debido a", "lo que genera…"</div>
+    </div>
+    <div class="anatomy-row row-link">
+      <div class="anatomy-label">3. Conectar 3C</div>
+      <div class="anatomy-content">Conecta con <strong>Conceptos</strong> (poder, ética, equidad…), <strong>Contenido</strong> (tecnología específica) y/o <strong>Contextos</strong> (social, económico, político…).</div>
+    </div>
+    <div class="anatomy-row row-concept">
+      <div class="anatomy-label">4. Criterio IB</div>
+      <div class="anatomy-content">Nombra el criterio de evaluación relevante: equidad, viabilidad, costo, aceptabilidad, ética, innovación. Esto ancla tu análisis al marco del curso.</div>
+    </div>
+  </div>
+  <div class="alert alert-blue">
+    <strong>Diferencia entre describir y analizar:</strong><br>
+    ❌ <em>Descriptivo:</em> "El voto por Internet puede tener problemas de seguridad."<br>
+    ✅ <em>Analítico:</em> "El voto por Internet es vulnerable a ciberataques, ya que un sistema digital centralizado concentra millones de votos en un único punto de fallo. Esto compromete el criterio de <em>aceptabilidad</em>: si los ciudadanos no confian en la integridad del sistema, la participación puede caer en lugar de aumentar, anulando el proposito de la intervención."
+  </div>
+</section>
+
+<section class="section" id="ejemplos">
+  <span class="sec-eye">07 · Modelos de respuesta</span>
+  <h2>Respuestas modelo con anotaciones</h2>
+  <div class="divider"></div>
+  <div class="anno-key">
+    <div class="anno-key-item"><span class="mk3c">3C</span> Conexión con las 3C</div>
+    <div class="anno-key-item"><span class="mkcon">CONCEPTO</span> Concepto del curso</div>
+    <div class="anno-key-item"><span class="mkcrit">CRITERIO</span> Criterio de evaluación IB</div>
+  </div>
+  <div class="tab-row">
+    <button class="tab-btn active" onclick="showTab('t1',this)">Exoesqueletos (N24)</button>
+    <button class="tab-btn" onclick="showTab('t2',this)">Voto por Internet (N24)</button>
+    <button class="tab-btn" onclick="showTab('t3',this)">IA en empleo (M24)</button>
+  </div>
+
+  <div id="t1" class="tab-pane active">
+    <div class="ex-card">
+      <div class="ex-card-header"><span class="ex-tag">P4 · N24</span><span class="etitle">Exoesqueletos inteligentes para personas mayores · [12 pts]</span></div>
+      <div class="ex-card-body">
+        <div class="stimulus">"Se afirma que esta intervención aumentará significativamente la calidad de vida de las personas mayores. <strong>Evalúe esta afirmación.</strong>"</div>
+        <div class="para-block pb-intro">
+          <span class="para-pill">Introducción analítica</span>
+          <p>Uno de los grandes desafíos de <strong>bienestar global</strong> que enfrentamos hoy es el envejecimiento de la población: la esperanza de vida pasó de 66,8 a 73,4 años entre 2000 y 2019, lo que pone mucha presión sobre los sistemas de salud y sobre la independencia de las personas mayores. Los exoesqueletos inteligentes son trajes robóticos que combinan sensores, motores y algoritmos de IA para ayudar a estas personas a moverse. <span class="mk3c">3C</span> Aunque esta tecnología puede traer beneficios reales en términos de independencia e inclusión social, creo que su impacto depende mucho de quién puede acceder a ella, de si el sistema funciona bien y de si se protegen los datos del usuario — por eso no podemos afirmar simplemente que el efecto será "significativo" para todos.</p>
+        </div>
+        <div class="para-block pb-pro">
+          <span class="para-pill">Argumento a favor (1)</span>
+          <p>Un argumento claro a favor es que los exoesqueletos pueden ayudar a las personas mayores a hacer cosas que ya no podían hacer solas, como caminar, subir escaleras o levantarse de una silla. Esto reduciría las caídas, que son la principal causa de hospitalizaciones en adultos mayores. <span class="mk3c">3C</span> En cuanto al <strong>contenido</strong>, la IA integrada permite que el dispositivo anticipe los movimientos del usuario, así que no es solo un soporte pasivo. En el <strong>contexto de salud</strong>, esto significa menos visitas al hospital y menos dependencia de cuidadores. <span class="mkcon">SISTEMAS</span> <span class="mkcrit">VIABILIDAD</span> — gran parte de la tecnología necesaria ya existe, así que no estamos hablando de algo del futuro lejano.</p>
+        </div>
+        <div class="para-block pb-pro">
+          <span class="para-pill">Argumento a favor (2)</span>
+          <p>Además, cuando alguien puede moverse de nuevo, puede volver a salir, ver a su familia, trabajar o participar en actividades sociales. Eso tiene un impacto enorme en el bienestar emocional, no solo en el físico. <span class="mkcon">VALORES</span> <span class="mkcrit">EQUIDAD</span> — esta intervención permite que personas que normalmente quedarían al margen de la vida social puedan seguir siendo parte de ella. Y si bien el costo inicial del dispositivo es alto, a largo plazo podría ahorrarse mucho dinero en hospitalizaciones y cuidados, lo que apoya la <span class="mkcrit">VIABILIDAD</span> económica de la intervención.</p>
+        </div>
+        <div class="para-block pb-con">
+          <span class="para-pill">Contraargumento (1)</span>
+          <p>Sin embargo, hay un problema grande: el precio. La población anciana crece muy rápido, especialmente en países con pocos recursos, y es simplemente imposible dar un exoesqueleto a todos los que lo necesitan. <span class="mkcrit">EQUIDAD</span> — esto significa que solo las personas con dinero podrían acceder a esta tecnología, creando una nueva desigualdad dentro del sistema de salud. <span class="mkcon">PODER</span> — además, las empresas que los fabrican deciden los precios y el diseño sin rendir cuentas a nadie, y podrían reducir la calidad del producto para abaratar costos. <span class="mkcrit">ÉTICA</span></p>
+        </div>
+        <div class="para-block pb-con">
+          <span class="para-pill">Contraargumento (2)</span>
+          <p>Por otro lado, depender de un dispositivo así puede volverse peligroso. Si el software falla, si no se actualiza bien o si la persona comete un error al usarlo, podría caerse o lastimarse peor que antes. <span class="mkcon">SISTEMAS</span> <span class="mkcrit">ACEPTABILIDAD</span> — muchas personas mayores no están acostumbradas a usar tecnología compleja y puede ser frustrante o intimidante aprender a manejar algo así. A eso se suma que el traje recoge datos del cuerpo del usuario constantemente, y no siempre queda claro quién tiene acceso a esa información. <span class="mkcon">VALORES Y ÉTICA</span></p>
+        </div>
+        <div class="para-block pb-eval">
+          <span class="para-pill">Conclusión evaluativa + referencia a situaciones similares</span>
+          <p>Después de analizar los dos lados, creo que la afirmación es <strong>parcialmente correcta</strong>: los exoesqueletos sí tienen potencial para mejorar la calidad de vida, pero ese impacto no va a ser "significativo" de forma automática ni para todos. Todo depende de si hay políticas que subsidien el acceso, de si se establecen normas claras de seguridad y de si se protegen los datos de los usuarios. Esta situación me recuerda a lo que pasó con la telemedicina durante el COVID-19: prometía ampliar el acceso a la salud, pero al final quedaron fuera muchas personas que no tenían teléfono o conexión a Internet. Para que los exoesqueletos realmente transformen la vida de las personas mayores, no basta con que la tecnología exista — necesitamos también las políticas que garanticen que llegue a quien más la necesita.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="t2" class="tab-pane">
+    <div class="ex-card">
+      <div class="ex-card-header"><span class="ex-tag">P5 · N24</span><span class="etitle">Voto por Internet en India · [12 pts]</span></div>
+      <div class="ex-card-body">
+        <div class="stimulus">"Se afirma que esta intervención aumentará la participación electoral. <strong>¿En qué medida estás de acuerdo con esta afirmación?</strong>"</div>
+        <div class="para-block pb-intro">
+          <span class="para-pill">Introducción analítica</span>
+          <p>Que los ciudadanos puedan participar en las elecciones es fundamental para cualquier democracia. En India, sin embargo, la participación nunca ha superado el 70% desde 1952, lo que plantea un serio problema de <strong>gobernanza y derechos humanos</strong>. El voto por Internet es una intervención digital que busca hacer más fácil votar, aprovechando que cada vez más personas tienen teléfono o acceso a Internet. <span class="mk3c">3C</span> Aunque esta idea tiene sentido para algunos grupos de la población, pienso que su éxito depende de varios factores que no están resueltos en India hoy: la brecha digital, los riesgos de seguridad y la falta de confianza en los sistemas digitales.</p>
+        </div>
+        <div class="para-block pb-pro">
+          <span class="para-pill">Argumento a favor (1)</span>
+          <p>La ventaja más clara es que eliminaría la necesidad de trasladarse a un centro de votación. Para personas con movilidad reducida, trabajadores que viven lejos de su lugar de registro o personas en zonas rurales muy apartadas, esto podría marcar una gran diferencia. <span class="mkcon">ESPACIO</span> <span class="mkcrit">EQUIDAD</span> — grupos que históricamente han tenido más dificultades para votar tendrían una opción más accesible. <span class="mk3c">3C</span> Además, el hecho de que se plantee instalar puntos de votación en bibliotecas públicas muestra que la intervención no asume que todos tienen dispositivo propio, lo cual es importante en un contexto como el de India.</p>
+        </div>
+        <div class="para-block pb-pro">
+          <span class="para-pill">Argumento a favor (2)</span>
+          <p>También creo que un sistema de voto en línea bien diseñado podría atraer a votantes jóvenes que se sienten más cómodos con la tecnología y que hoy no votan por desinterés o comodidad. <span class="mkcrit">ACEPTABILIDAD</span> <span class="mkcon">CAMBIO</span> Hay un ejemplo real que apoya esto: en Estonia, el voto por Internet existe desde 2005 y ha crecido de forma constante hasta representar casi la mitad de los votos en elecciones recientes. <span class="mkcrit">INNOVACIÓN</span> — esto muestra que la intervención no es solo una idea teórica, sino algo que puede funcionar en la práctica.</p>
+        </div>
+        <div class="para-block pb-con">
+          <span class="para-pill">Contraargumento (1)</span>
+          <p>Sin embargo, hay un problema enorme que no se puede ignorar: India tiene una brecha digital muy grande. Millones de personas, especialmente en zonas rurales, no tienen teléfono con Internet o no saben usarlo con confianza. <span class="mkcrit">EQUIDAD</span> Si las bibliotecas y centros públicos no están bien repartidos por el territorio, los que quedarían fuera serían exactamente los que ya tienen más dificultades para votar. <span class="mkcon">SISTEMAS</span> — un sistema solo funciona tan bien como su parte más débil, y en este caso esa parte es la conectividad en zonas rurales y remotas.</p>
+        </div>
+        <div class="para-block pb-con">
+          <span class="para-pill">Contraargumento (2)</span>
+          <p>Por otro lado, votar por Internet genera muchas dudas sobre seguridad y transparencia. A diferencia de una urna física donde cualquier testigo puede ver lo que pasa, un sistema digital puede ser manipulado sin que nadie se dé cuenta. <span class="mkcrit">ÉTICA</span> <span class="mkcon">PODER</span> — si los algoritmos de recuento no son públicos y auditables, ¿cómo sabe el ciudadano que su voto fue contado correctamente? En un país donde ya ha habido desconfianza en los procesos electorales, esto podría hacer que menos gente vote, no más. <span class="mkcrit">ACEPTABILIDAD</span></p>
+        </div>
+        <div class="para-block pb-eval">
+          <span class="para-pill">Conclusión evaluativa + referencia a situaciones similares</span>
+          <p>En mi opinión, estoy <strong>parcialmente de acuerdo</strong> con la afirmación. El voto por Internet podría aumentar la participación en ciertos grupos —jóvenes, personas con movilidad reducida, trabajadores migrantes— pero no de manera general en toda la India. El caso de Brasil es útil para entender esto: cuando introdujo las urnas electrónicas en los años 90, sí logró aumentar la participación, pero lo hizo junto con una campaña enorme de educación cívica y tecnológica. Sin algo así en India, el voto por Internet podría beneficiar a quienes ya tienen acceso mientras el 30% que históricamente no vota —mayormente rural y con menos recursos— sigue sin participar, solo que por razones distintas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="t3" class="tab-pane">
+    <div class="ex-card">
+      <div class="ex-card-header"><span class="ex-tag">P5 · M24</span><span class="etitle">IA para filtrar solicitudes de empleo · [12 pts]</span></div>
+      <div class="ex-card-body">
+        <div class="stimulus">"Se afirma que el uso de la IA clasificará con precisión a los solicitantes de empleo. <strong>¿En qué medida estás de acuerdo con esta afirmación?</strong>"</div>
+        <div class="two-col" style="margin-bottom:1.2rem;">
+          <div class="col-box col-green">
+            <h4>A favor — sí clasificará con precisión</h4>
+            <ul>
+              <li>Puede detectar patrones en los datos que un humano no vería <span class="mkcon">SISTEMAS</span></li>
+              <li>Si está bien entrenada, puede reducir favoritismos y prejuicios personales <span class="mkcrit">ÉTICA</span></li>
+              <li>Ahorra tiempo y permite revisar miles de solicitudes <span class="mkcrit">EQUIDAD</span></li>
+              <li>Si los criterios son públicos, los candidatos saben a qué atenerse <span class="mkcrit">ACEPTABILIDAD</span></li>
+            </ul>
+          </div>
+          <div class="col-box col-red">
+            <h4>Contra — no clasificará con precisión</h4>
+            <ul>
+              <li>Aprende de datos históricos que ya tienen sesgos de género y etnia <span class="mkcon">PODER</span></li>
+              <li>No puede evaluar personalidad, actitud ni habilidades interpersonales <span class="mkcon">VALORES</span></li>
+              <li>Perjudica a quienes no tienen experiencia con tecnología <span class="mkcrit">EQUIDAD</span></li>
+              <li>Los algoritmos casi nunca son públicos, así que nadie los puede cuestionar <span class="mkcrit">ÉTICA</span></li>
+            </ul>
+          </div>
+        </div>
+        <h4>Ejemplo de contraargumento con 3C — nivel 10–12</h4>
+        <div class="para-block pb-con" style="margin-top:.75rem;">
+          <span class="para-pill">Contraargumento con 3C + criterio</span>
+          <p>Sin embargo, uno de los problemas más serios es que la IA puede reproducir —e incluso amplificar— los mismos sesgos que ya existían antes. Si el sistema fue entrenado con datos de contrataciones pasadas donde las mujeres o las minorías étnicas rara vez llegaban a puestos de liderazgo, el algoritmo va a aprender que ese perfil "no encaja" y los va a rechazar. <span class="mk3c">3C</span> <span class="mkcon">PODER</span> — esto es especialmente grave porque el candidato no puede saber por qué fue rechazado ni a quién reclamarle, ya que las decisiones las toma un sistema que casi nadie entiende del todo. Esto refuerza desigualdades de <span class="mkcon">IDENTIDAD</span> que deberían estar superándose, no perpetuándose. <span class="mkcrit">ÉTICA</span> — hay un caso concreto que ilustra esto muy bien: el sistema COMPAS, usado en tribunales de Estados Unidos para predecir si alguien reincidiría, resultó tener sesgos raciales comprobados. Eso demuestra que este tipo de problema no es solo una posibilidad teórica, sino algo que ya ha ocurrido con consecuencias reales para personas reales.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="rubrica">
+  <span class="sec-eye">08 · Evaluación del IB</span>
+  <h2>Rubrica oficial — Sección B</h2>
+  <div class="divider"></div>
+  <table class="rubric">
+    <thead><tr><th>Pts</th><th>Descriptor del IB</th></tr></thead>
+    <tbody>
+      <tr><td><span class="sbadge s0">0</span></td><td>No alcanza ningun nivel descriptivo.</td></tr>
+      <tr><td><span class="sbadge s13">1–3</span></td><td><ul><li>Comprensión limitada. Conocimientos escasos; generalizaciones sin sustento.</li><li><strong>No se consideran ni abordan los contraargumentos.</strong></li><li>Organización limitada.</li></ul></td></tr>
+      <tr><td><span class="sbadge s46">4–6</span></td><td><ul><li>Cierta comprensión; conocimientos no siempre precisos.</li><li>Mayormente descriptiva, algo de análisis pero no continuo.</li><li><strong>Contraargumentos solo parcialmente abordados.</strong></li><li>Organización parcial.</li></ul></td></tr>
+      <tr><td><span class="sbadge s79">7–9</span></td><td><ul><li>Comprensión adecuada. Análisis eficaz con conocimientos precisos.</li><li><strong>Contraargumentos abordados adecuadamente.</strong></li><li>Respuesta organizada en parrafos.</li></ul></td></tr>
+      <tr><td><span class="sbadge s1012">10–12</span></td><td><ul><li>Comprensión profunda y enfocada.</li><li><strong>Evaluación y sintesis</strong> bien sustentadas con conocimientos precisos.</li><li><strong>Contraargumentos integrados eficazmente</strong> (no solo mencionados).</li><li>Bien estructurada, organizada con parrafos diferenciados.</li><li>Conexión explicita con las 3C y referencia a situaciones similares.</li></ul></td></tr>
+    </tbody>
+  </table>
+  <div class="two-col">
+    <div class="col-box col-red">
+      <h4>Respuesta 7–9</h4>
+      <ul>
+        <li>Tiene argumentos y contraargumentos</li>
+        <li>Los conecta con conceptos del curso</li>
+        <li>Esta organizada en parrafos</li>
+        <li>La conclusión resume sin evaluar profundamente</li>
+        <li>Las 3C aparecen de forma implicita</li>
+      </ul>
+    </div>
+    <div class="col-box col-green">
+      <h4>Respuesta 10–12</h4>
+      <ul>
+        <li>Los argumentos se conectan y crean tensión entre si</li>
+        <li>Los contraargumentos son igual de solidos</li>
+        <li>Las 3C se usan explicitamente para justificar</li>
+        <li>Conclusión con posicion y referencia a situaciones similares</li>
+        <li>Incluye ejemplos del mundo real precisos</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="checklist">
+  <span class="sec-eye">09 · Antes de entregar</span>
+  <h2>Checklist de revisión final</h2>
+  <div class="divider"></div>
+  <p>Reserva 5 minutos al final del examen para revisar tu respuesta con esta lista.</p>
+  <div class="check-group">
+    <h4>Contenido y argumentacion</h4>
+    <ul class="check-list">
+      <li>Mi introducción sintetiza el desafio, la intervención y anticipa ambos lados — no repite la pregunta</li>
+      <li>Presenta al menos <strong>2 argumentos a favor</strong> con mecanismo explicado</li>
+      <li>Presenta al menos <strong>2 contraargumentos</strong> igual de desarrollados</li>
+      <li>Use al menos <strong>2 de los 6 criterios IB</strong> por nombre (equidad, viabilidad, costo, ética, aceptabilidad, innovación)</li>
+      <li>Conecte mis argumentos con las <strong>3C</strong> (conceptos, contenido, contextos) explicitamente</li>
+      <li>Incluí al menos <strong>un ejemplo del mundo real</strong> específico</li>
+      <li>Mi conclusión toma una <strong>posicion evaluativa</strong> y menciona una <strong>situación similar</strong></li>
+    </ul>
+  </div>
+  <div class="check-group">
+    <h4>Lenguaje y estructura</h4>
+    <ul class="check-list">
+      <li>Usa párrafos completos — no listas de puntos sueltos</li>
+      <li>Usa conectores de análisis: "porque", "lo que implica que", "como resultado", "esto genera"</li>
+      <li>Usa conectores de contraste: "sin embargo", "no obstante", "por otro lado"</li>
+      <li>Usa lenguaje evaluativo en la conclusión: "sopesando ambos lados", "en mi opinion", "aunque… la evidencia sugiere"</li>
+      <li>No repeti la misma idea en dos parrafos distintos</li>
+    </ul>
+  </div>
+  <div class="check-group">
+    <h4>Nivel de análisis</h4>
+    <ul class="check-list">
+      <li>Cada punto explica el <em>mecanismo</em>: no solo dice que pasa, sino por que y con que consecuencias</li>
+      <li>Al menos un argumento y su contraargumento estan en tensión explicita</li>
+      <li>Mi evaluación final integra varios criterios, no solo uno</li>
+      <li>La conclusión no es un resumen — es una sintesis evaluativa con posicion sustentada y referencia a casos similares</li>
+    </ul>
+  </div>
+  <div class="alert alert-green">
+    <strong>Recuerda:</strong> El IB no tiene una "respuesta correcta" para la Sección B. Evalúa la calidad de tu pensamiento crítico. Una respuesta que argumenta ambos lados con evidencia precisa, conecta con las 3C y concluye con una posicion justificada y referencia a situaciones similares siempre supera a una que solo defiende un lado con conviccion.
+  </div>
+</section>
+
+</div>
+
+<footer>Sociedad Digital · Nivel Superior · Guia Sección B &nbsp;|&nbsp; Basada en recomendaciones de examinadores IB · Markscheme N24 y M24</footer>
+
+<script>
+function showTab(id,btn){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
